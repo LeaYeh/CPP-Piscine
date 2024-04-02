@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/02 22:57:30 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/02 23:01:46 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void PhoneBook::_print_contact_list(void)
 
 void PhoneBook::_print_contact(Contact contact)
 {
+    std::cout << std::endl;
     std::cout << "First name: " << contact.get_first_name() << std::endl;
     std::cout << "Last name: " << contact.get_last_name() << std::endl;
     std::cout << "Nickname: " << contact.get_nickname() << std::endl;
@@ -114,7 +115,6 @@ bool PhoneBook::_search_operation(void)
         }
         break;
     }
-    std::cout << "" << std::endl;
     return (this->_print_contact(this->_contact_array[index]), index);
 }
 
@@ -132,13 +132,10 @@ void PhoneBook::run(void)
             std::cout << std::endl;
             break;
         }
-        if (command == "ADD")
+        else if (command == "ADD")
             this->_add_operation();
-        else if (command == "SEARCH")
-        {
-            if (!this->_search_operation())
-                break;
-        }
+        else if (command == "SEARCH" && !this->_search_operation())
+            break;
         else if (command == "EXIT")
             break;
         else
