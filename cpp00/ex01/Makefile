@@ -6,13 +6,13 @@
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 13:34:11 by lyeh              #+#    #+#              #
-#    Updated: 2024/04/02 22:31:42 by lyeh             ###   ########.fr        #
+#    Updated: 2024/04/03 13:12:00 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= phonebook
 CC 			= g++
-CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
+CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic -g
 SRC 		= $(wildcard *.cpp)
 OBJ 		= $(patsubst %.cpp,%.o,$(SRC))
 
