@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/03 13:22:56 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/04 11:51:42 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ bool PhoneBook::_search_operation(void)
     {
         std::cout << "Enter the index of the contact: ";
         if (!(std::cin >> input))
-            return (std::cin.clear(), std::clearerr(stdin), true);
+            return (std::cin.clear(), std::clearerr(stdin), std::cout << std::endl, true);
         index = this->_handle_input_text(input);
         if (index < 0 || index >= (this->_contact_count % this->_MAX_CONTACT))
         {
@@ -116,7 +116,7 @@ bool PhoneBook::_search_operation(void)
         }
         break;
     }
-    return (this->_print_contact(this->_contact_array[index]), index);
+    return (this->_print_contact(this->_contact_array[index]), true);
 }
 
 void PhoneBook::run(void)
@@ -136,16 +136,18 @@ void PhoneBook::run(void)
         }
         else if (command == "ADD")
             this->_add_operation();
-        else if (command == "SEARCH" && !(this->_search_operation()))
-            break;
+        else if (command == "SEARCH")
+        {
+            if (!this->_search_operation())
+                break;
+        }
         else if (command == "EXIT")
             break;
         else
             std::cout << "Invalid command" << std::endl
-                      << std::endl;
+                          << std::endl;
     }
-    std::cout << std::endl
-              << "Logout of the service." << std::endl;
+    std::cout << "\nLogout of the service." << std::endl;
 }
 
 void PhoneBook::_add_contact(const std::string first_name,
