@@ -6,17 +6,18 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:35:09 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/01 11:29:11 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/04 14:43:38 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 void print_upper_string(std::string str)
 {
-    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+    // std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+    for (std::string::iterator it = str.begin(); it != str.end(); it++)
+        *it = std::toupper(*it);
     std::cout << str;
 }
 
@@ -33,7 +34,13 @@ int main(int argc, char **argv)
     //     std::transform(str.begin(), str.end(), str.begin(), ::toupper);
     //     std::cout << str;
     // });
-    std::for_each(argv + 1, argv + argc, print_upper_string);
+    // std::for_each(argv + 1, argv + argc, print_upper_string);
+    for (int i = 1; i < argc; i++)
+    {
+        if (i > 1)
+            std::cout << " ";
+        print_upper_string(argv[i]);
+    }
     std::cout << std::endl;
     return (0);
 }

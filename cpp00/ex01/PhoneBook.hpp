@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:14:43 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/03 12:00:16 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/04 13:41:21 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <cstdio>
 #include <iomanip>
 #include <sstream>
-#include <algorithm>
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 class PhoneBook
 {
