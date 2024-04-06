@@ -6,11 +6,11 @@
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 13:34:11 by lyeh              #+#    #+#              #
-#    Updated: 2024/04/05 21:25:02 by lyeh             ###   ########.fr        #
+#    Updated: 2024/04/06 11:24:58 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= ex02
+NAME 		= ref_ptr
 CC 			= g++
 CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic -g
 SRC 		= $(wildcard *.cpp)
