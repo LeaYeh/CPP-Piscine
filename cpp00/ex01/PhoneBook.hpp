@@ -6,12 +6,12 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:14:43 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/04 13:41:21 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/06 11:13:32 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_HPP
-#define PHONEBOOK_CLASS_HPP
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <cstdio>
 #include <iomanip>
@@ -36,8 +36,8 @@ private:
     void _add_operation(void);
     bool _search_operation(void);
     int _handle_input_text(const std::string input);
-    std::string _format_cell_text(const std::string &text);
-    std::string _format_row_info(const Contact &contact);
+    std::string _format_cell_text(const std::string& text);
+    std::string _format_row_info(const Contact& contact);
 
 public:
     PhoneBook(void);

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.class.hpp                                  :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:59:27 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/02 22:19:08 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/05 21:34:26 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CLASS_HPP
-#define CONTACT_CLASS_HPP
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
 #include <iostream>
 #include <string>
