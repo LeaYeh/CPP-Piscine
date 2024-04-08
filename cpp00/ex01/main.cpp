@@ -6,11 +6,11 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:33:46 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/02 17:01:27 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/08 10:47:14 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
