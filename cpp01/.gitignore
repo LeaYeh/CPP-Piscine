@@ -37,4 +37,4 @@ zombie
 ref_ptr
 weapon
 replace
-.replace
+*.replace
