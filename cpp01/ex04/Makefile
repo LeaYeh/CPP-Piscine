@@ -5,26 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/01 10:43:20 by lyeh              #+#    #+#              #
-#    Updated: 2024/04/08 15:47:04 by lyeh             ###   ########.fr        #
+#    Created: 2024/04/01 13:34:11 by lyeh              #+#    #+#              #
+#    Updated: 2024/04/08 15:47:58 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
-CC = c++
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+NAME 		= replace
+CC 			= c++
+CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic -g
+SRC 		= $(wildcard *.cpp)
+OBJ 		= $(patsubst %.cpp,%.o,$(SRC))
 
 .PHONY: all clean fclean re
 
-$(NAME): megaphone.cpp
-	$(CC) $(CPP_FLAGS) megaphone.cpp -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJ)
 
-all: $(CC) $(CPP_FLAGS) $(NAME)
+all: $(NAME)
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
