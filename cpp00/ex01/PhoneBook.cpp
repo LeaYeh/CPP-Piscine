@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/04 13:38:44 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/08 11:48:12 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void PhoneBook::_add_operation(void)
 
 std::string PhoneBook::_format_cell_text(const std::string &text)
 {
-    if (text.length() > this->_MAX_TEXT_LENGTH)
-        return text.substr(0, this->_MAX_TEXT_LENGTH - 1) + ".";
+    if (text.length() > _MAX_TEXT_LENGTH)
+        return text.substr(0, _MAX_TEXT_LENGTH - 1) + ".";
     return text;
 }
 
@@ -49,10 +49,10 @@ std::string PhoneBook::_format_row_info(const Contact &contact)
 {
     std::stringstream ss;
 
-    ss << std::setw(this->_MAX_TEXT_LENGTH) << contact.get_index() << "|"
-       << std::setw(this->_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_first_name()) << "|"
-       << std::setw(this->_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_last_name()) << "|"
-       << std::setw(this->_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_nickname()) << std::endl;
+    ss << std::setw(_MAX_TEXT_LENGTH) << contact.get_index() << "|"
+       << std::setw(_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_first_name()) << "|"
+       << std::setw(_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_last_name()) << "|"
+       << std::setw(_MAX_TEXT_LENGTH) << this->_format_cell_text(contact.get_nickname());
 
     return ss.str();
 }
@@ -60,11 +60,11 @@ std::string PhoneBook::_format_row_info(const Contact &contact)
 void PhoneBook::_print_contact_list(void)
 {
     std::cout << std::right;
-    std::cout << std::setw(this->_MAX_TEXT_LENGTH) << "Index"
-              << "|" << std::setw(this->_MAX_TEXT_LENGTH) << "First Name"
-              << "|" << std::setw(this->_MAX_TEXT_LENGTH) << "Last Name"
-              << "|" << std::setw(this->_MAX_TEXT_LENGTH) << "Nickname" << std::endl;
-    for (int i = 0; i < this->_contact_count % this->_MAX_CONTACT; ++i)
+    std::cout << std::setw(_MAX_TEXT_LENGTH) << "Index"
+              << "|" << std::setw(_MAX_TEXT_LENGTH) << "First Name"
+              << "|" << std::setw(_MAX_TEXT_LENGTH) << "Last Name"
+              << "|" << std::setw(_MAX_TEXT_LENGTH) << "Nickname" << std::endl;
+    for (int i = 0; i < _MAX_CONTACT; ++i)
         std::cout << this->_format_row_info(this->_contact_array[i]) << std::endl;
     std::cout << std::endl;
 }
@@ -108,7 +108,7 @@ bool PhoneBook::_search_operation(void)
         if (!(std::cin >> input))
             return (std::cin.clear(), std::clearerr(stdin), std::cout << std::endl, true);
         index = this->_handle_input_text(input);
-        if (index < 0 || index >= (this->_contact_count % this->_MAX_CONTACT))
+        if (index < 0 || (index >= this->_contact_count || index >= _MAX_CONTACT))
         {
             std::cout << "Invalid index" << std::endl
                       << std::endl;
@@ -145,7 +145,7 @@ void PhoneBook::run(void)
             break;
         else
             std::cout << "Invalid command" << std::endl
-                          << std::endl;
+                      << std::endl;
     }
     std::cout << "\nLogout of the service." << std::endl;
 }
@@ -156,17 +156,17 @@ void PhoneBook::_add_contact(const std::string first_name,
                              const std::string phone_number,
                              const std::string darkest_secret)
 {
-    int index = this->_contact_count % this->_MAX_CONTACT;
+    int index = this->_contact_count % _MAX_CONTACT;
 
-    if (this->_contact_count >= 8)
-        std::cout << "Phone book is full, the new contact will replace the " << index << " contact" << std::endl;
+    if (this->_contact_count >= _MAX_CONTACT)
+        std::cout << "Phone book is full, the new contact will replace the " << index + 1 << " contact" << std::endl;
     this->_contact_array[index].set_index(index);
     this->_contact_array[index].set_first_name(first_name);
     this->_contact_array[index].set_last_name(last_name);
     this->_contact_array[index].set_nickname(nickname);
     this->_contact_array[index].set_phone_number(phone_number);
     this->_contact_array[index].set_darkest_secret(darkest_secret);
-    std::cout << "Contact added [" << index + 1 << "/" << this->_MAX_CONTACT << "]" << std::endl;
+    std::cout << "Contact added at [" << index + 1 << "/" << _MAX_CONTACT << "]" << std::endl;
     std::cout << "" << std::endl;
     this->_contact_count++;
 }
