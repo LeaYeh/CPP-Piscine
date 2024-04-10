@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/08 11:48:12 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/10 11:59:15 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void PhoneBook::_print_contact_list(void)
               << "|" << std::setw(_MAX_TEXT_LENGTH) << "First Name"
               << "|" << std::setw(_MAX_TEXT_LENGTH) << "Last Name"
               << "|" << std::setw(_MAX_TEXT_LENGTH) << "Nickname" << std::endl;
-    for (int i = 0; i < _MAX_CONTACT; ++i)
+    for (int i = 0; i < _MAX_CONTACT && i < this->_contact_count; ++i)
         std::cout << this->_format_row_info(this->_contact_array[i]) << std::endl;
     std::cout << std::endl;
 }
