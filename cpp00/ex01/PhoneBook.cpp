@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/10 15:34:18 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/10 16:12:54 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int PhoneBook::_get_visual_width(const std::string& text)
 {
     int width = 0;
 
-    for (unsigned char c : text)
+    for (std::string::const_iterator it = text.begin(); it != text.end(); ++it)
     {
+        unsigned char c = *it;
         if ((c & 0xC0) != 0x80) // If the byte is not a continuation byte
             width++;
     }
@@ -64,8 +65,9 @@ std::string PhoneBook::_format_cell_text(const std::string &text)
     int len = 0;
     int byte_pos = 0;
 
-    for (unsigned char c : text)
+    for (std::string::const_iterator it = text.begin(); it != text.end(); ++it)
     {
+        unsigned char c = *it;
         if ((c & 0xC0) != 0x80) // If the byte is not a continuation byte
         {
             if (len == _MAX_TEXT_LENGTH - 1)
