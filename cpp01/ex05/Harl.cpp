@@ -16,25 +16,25 @@ Harl::Level Harl::_mapStringToLevel(const std::string &level)
 
 void Harl::debug(void)
 {
-    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[DEBUG]";
+    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[ DEBUG ]";
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
 }
 
 void Harl::info(void)
 {
-    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[INFO]";
+    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[ INFO ]";
     std::cout << "I cannot believe adding extra bacon cost more money. You don’t put enough! If you did I would not have to ask for it!" << std::endl;
 }
 
 void Harl::warning(void)
 {
-    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[WARNING]";
+    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[ WARNING ]";
     std::cout << "I think I’ve lost my appetite. I’m going to cancel my order." << std::endl;
 }
 
 void Harl::error(void)
 {
-    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[ERROR]";
+    std::cout << std::setw(_PREFIX_LENGTH) << std::left << "[ ERROR ]";
     std::cout << "Sorry, I can’t take your order. The kitchen is closed." << std::endl;
 }
 
