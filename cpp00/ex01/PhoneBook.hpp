@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:14:43 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/06 11:13:32 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/10 15:18:05 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
     static const int _MAX_CONTACT = 8;
     static const int _MAX_TEXT_LENGTH = 10;
     int _contact_count;
-    std::array<Contact, _MAX_CONTACT> _contact_array;
+    Contact _contact_array[_MAX_CONTACT];
 
     void _add_contact(const std::string first_name,
                       const std::string last_name,
@@ -35,6 +35,7 @@ private:
     void _print_contact_list(void);
     void _add_operation(void);
     bool _search_operation(void);
+    int _get_visual_width(const std::string& text);
     int _handle_input_text(const std::string input);
     std::string _format_cell_text(const std::string& text);
     std::string _format_row_info(const Contact& contact);
