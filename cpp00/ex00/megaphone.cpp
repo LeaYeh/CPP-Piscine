@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:35:09 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/04 14:43:38 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/11 15:58:37 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 void print_upper_string(std::string str)
 {
     // std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-    for (std::string::iterator it = str.begin(); it != str.end(); it++)
-        *it = std::toupper(*it);
+    // for (std::string::iterator it = str.begin(); it != str.end(); it++)
+    //     *it = std::toupper(*it);
+    for (int i = 0; i < str.length(); i++)
+        str[i] = std::toupper(str[i]);
     std::cout << str;
 }
 
