@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/10 16:12:54 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/11 16:15:26 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ PhoneBook::PhoneBook(void) : _contact_count(0){};
 
 PhoneBook::~PhoneBook(void){};
 
-void PhoneBook::_add_operation(void)
+bool PhoneBook::_add_operation(void)
 {
     std::string first_name;
     std::string last_name;
@@ -24,18 +24,30 @@ void PhoneBook::_add_operation(void)
     std::string phone_number;
     std::string darkest_secret;
 
-    std::cout << "Enter first name: ";
-    std::cin >> first_name;
-    std::cout << "Enter last name: ";
-    std::cin >> last_name;
-    std::cout << "Enter nickname: ";
-    std::cin >> nickname;
-    std::cout << "Enter phone number: ";
-    std::cin >> phone_number;
-    std::cout << "Enter darkest secret: ";
-    std::cin >> darkest_secret;
-
+    try
+    {
+        std::cout << "Enter first name: ";
+        if (!(std::cin >> first_name))
+            throw std::invalid_argument("First name cannot be empty");
+        std::cout << std::endl << "Enter last name: ";
+        if (!(std::cin >> last_name))
+            throw std::invalid_argument("Last name cannot be empty");
+        std::cout << std::endl << "Enter nickname: ";
+        if (!(std::cin >> nickname))
+            throw std::invalid_argument("Nickname cannot be empty");
+        std::cout << std::endl << "Enter phone number: ";
+        if (!(std::cin >> phone_number))
+            throw std::invalid_argument("Phone number cannot be empty");
+        std::cout << std::endl << "Enter darkest secret: ";
+        if (!(std::cin >> darkest_secret))
+            throw std::invalid_argument("Darkest secret cannot be empty");
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+        return (std::cin.clear(), std::clearerr(stdin), false);
+    }
     this->_add_contact(first_name, last_name, nickname, phone_number, darkest_secret);
+    return true;
 }
 
 /*
@@ -47,7 +59,7 @@ void PhoneBook::_add_operation(void)
 0xC0:             11000000
 0x80:             10000000
 */
-int PhoneBook::_get_visual_width(const std::string& text)
+int PhoneBook::_get_visual_width(const std::string &text)
 {
     int width = 0;
 
@@ -172,7 +184,7 @@ void PhoneBook::run(void)
 
     while (true)
     {
-        std::cout << "Enter a command: ";
+        std::cout << std::endl << "Enter a command: ";
         if (!(std::cin >> command))
         {
             std::cin.clear();
@@ -181,7 +193,10 @@ void PhoneBook::run(void)
             break;
         }
         else if (command == "ADD")
-            this->_add_operation();
+        {
+            if (!this->_add_operation())
+                continue;
+        }
         else if (command == "SEARCH")
         {
             if (!this->_search_operation())

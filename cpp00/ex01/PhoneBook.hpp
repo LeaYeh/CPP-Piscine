@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:14:43 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/10 15:18:05 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/11 16:02:19 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ private:
                       const std::string darkest_secret);
     void _print_contact(const Contact contact);
     void _print_contact_list(void);
-    void _add_operation(void);
+    bool _add_operation(void);
     bool _search_operation(void);
     int _get_visual_width(const std::string& text);
     int _handle_input_text(const std::string input);
