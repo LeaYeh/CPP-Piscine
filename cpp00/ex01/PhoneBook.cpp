@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/11 16:15:26 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/17 15:47:53 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 PhoneBook::PhoneBook(void) : _contact_count(0){};
 
 PhoneBook::~PhoneBook(void){};
+
+bool PhoneBook::_input_controller(std::string &input)
+{
+    bool has_eof = false;
+
+    if (!(std::cin >> input))
+    {
+        std::cin.clear();
+        std::clearerr(stdin);
+        has_eof = true;
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return !has_eof;
+}
 
 bool PhoneBook::_add_operation(void)
 {
@@ -27,24 +41,29 @@ bool PhoneBook::_add_operation(void)
     try
     {
         std::cout << "Enter first name: ";
-        if (!(std::cin >> first_name))
+        if (!_input_controller(first_name) || first_name.empty())
             throw std::invalid_argument("First name cannot be empty");
-        std::cout << std::endl << "Enter last name: ";
-        if (!(std::cin >> last_name))
+        std::cout << std::endl
+                  << "Enter last name: ";
+        if (!_input_controller(last_name) || last_name.empty())
             throw std::invalid_argument("Last name cannot be empty");
-        std::cout << std::endl << "Enter nickname: ";
-        if (!(std::cin >> nickname))
+        std::cout << std::endl
+                  << "Enter nickname: ";
+        if (!_input_controller(nickname) || nickname.empty())
             throw std::invalid_argument("Nickname cannot be empty");
-        std::cout << std::endl << "Enter phone number: ";
-        if (!(std::cin >> phone_number))
+        std::cout << std::endl
+                  << "Enter phone number: ";
+        if (!_input_controller(phone_number) || phone_number.empty())
             throw std::invalid_argument("Phone number cannot be empty");
-        std::cout << std::endl << "Enter darkest secret: ";
-        if (!(std::cin >> darkest_secret))
+        std::cout << std::endl
+                  << "Enter darkest secret: ";
+        if (!_input_controller(darkest_secret) || darkest_secret.empty())
             throw std::invalid_argument("Darkest secret cannot be empty");
     }
-    catch (const std::invalid_argument& e) {
+    catch (const std::invalid_argument &e)
+    {
         std::cerr << e.what() << std::endl;
-        return (std::cin.clear(), std::clearerr(stdin), false);
+        return (false);
     }
     this->_add_contact(first_name, last_name, nickname, phone_number, darkest_secret);
     return true;
@@ -184,15 +203,11 @@ void PhoneBook::run(void)
 
     while (true)
     {
-        std::cout << std::endl << "Enter a command: ";
-        if (!(std::cin >> command))
-        {
-            std::cin.clear();
-            std::clearerr(stdin);
-            std::cout << std::endl;
+        std::cout << std::endl
+                  << "Enter a command: ";
+        if (!_input_controller(command))
             break;
-        }
-        else if (command == "ADD")
+        if (command == "ADD")
         {
             if (!this->_add_operation())
                 continue;

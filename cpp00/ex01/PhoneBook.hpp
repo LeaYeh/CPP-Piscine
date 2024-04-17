@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:14:43 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/11 16:02:19 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/17 15:46:42 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <iomanip>
 #include <sstream>
+#include <limits>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -35,10 +36,11 @@ private:
     void _print_contact_list(void);
     bool _add_operation(void);
     bool _search_operation(void);
-    int _get_visual_width(const std::string& text);
+    int _get_visual_width(const std::string &text);
     int _handle_input_text(const std::string input);
-    std::string _format_cell_text(const std::string& text);
-    std::string _format_row_info(const Contact& contact);
+    bool _input_controller(std::string &input);
+    std::string _format_cell_text(const std::string &text);
+    std::string _format_row_info(const Contact &contact);
 
 public:
     PhoneBook(void);
