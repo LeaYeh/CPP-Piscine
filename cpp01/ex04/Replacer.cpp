@@ -6,16 +6,16 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:58:13 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/08 16:43:47 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/19 12:41:15 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Replacer.hpp"
 
 Replacer::Replacer(std::string filename, std::string old_str, std::string new_str)
-    : _input_fp(filename), _old_str(old_str), _new_str(new_str), _output_fp(filename + ".replace")
+    : _input_fp(filename), _output_fp(filename + ".replace"), _old_str(old_str), _new_str(new_str)
 {
-    std::ifstream file(this->_input_fp);
+    std::ifstream file(this->_input_fp.c_str());
     if (!file.is_open())
     {
         std::cout << "Error: File not found" << std::endl;
@@ -28,7 +28,7 @@ Replacer::Replacer(std::string filename, std::string old_str, std::string new_st
     file.close();
 }
 
-Replacer::~Replacer(void) {};
+Replacer::~Replacer(void) {}
 
 std::string Replacer::_getInputFileContent(void)
 {
@@ -46,7 +46,7 @@ void Replacer::replace(void)
         pos += this->_new_str.length();
     }
 
-    std::ofstream file(this->_output_fp);
+    std::ofstream file(this->_output_fp.c_str());
     if (!file.is_open())
     {
         std::cout << "Error: File could not be created" << std::endl;

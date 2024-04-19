@@ -1,9 +1,9 @@
 #include "Harl.hpp"
 
 
-Harl::Harl(void) {};
+Harl::Harl(void) {}
 
-Harl::~Harl(void) {};
+Harl::~Harl(void) {}
 
 Harl::Level Harl::_mapStringToLevel(const std::string &level)
 {
