@@ -6,15 +6,15 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:17:53 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/04 13:38:49 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/19 11:23:47 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(void) {};
+Contact::Contact(void) {}
 
-Contact::~Contact(void) {};
+Contact::~Contact(void) {}
 
 bool Contact::is_empty(const std::string s)
 {

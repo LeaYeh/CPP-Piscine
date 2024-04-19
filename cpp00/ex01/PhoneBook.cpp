@@ -6,15 +6,15 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:15:38 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/17 15:47:53 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/19 11:23:38 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void) : _contact_count(0){};
+PhoneBook::PhoneBook(void) : _contact_count(0) {}
 
-PhoneBook::~PhoneBook(void){};
+PhoneBook::~PhoneBook(void) {}
 
 bool PhoneBook::_input_controller(std::string &input)
 {
@@ -94,7 +94,7 @@ int PhoneBook::_get_visual_width(const std::string &text)
 std::string PhoneBook::_format_cell_text(const std::string &text)
 {
     int len = 0;
-    int byte_pos = 0;
+    unsigned long byte_pos = 0;
 
     for (std::string::const_iterator it = text.begin(); it != text.end(); ++it)
     {
@@ -199,7 +199,6 @@ bool PhoneBook::_search_operation(void)
 void PhoneBook::run(void)
 {
     std::string command;
-    int contact_index;
 
     while (true)
     {

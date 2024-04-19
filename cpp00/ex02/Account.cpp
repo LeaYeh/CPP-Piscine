@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:41:20 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/04 11:42:52 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/19 12:04:06 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-Account::Account(void){};
+Account::Account(void) {}
 
 Account::Account(int initial_deposit)
 {
