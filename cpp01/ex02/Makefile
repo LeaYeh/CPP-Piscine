@@ -6,12 +6,12 @@
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 13:34:11 by lyeh              #+#    #+#              #
-#    Updated: 2024/04/19 12:05:18 by lyeh             ###   ########.fr        #
+#    Updated: 2024/04/22 16:28:05 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= ref_ptr
-CXX 			= c++
+CXX 		= c++
 CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic -g
 SRC 		= $(wildcard *.cpp)
 OBJ 		= $(patsubst %.cpp,%.o,$(SRC))
