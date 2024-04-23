@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:58:13 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/19 12:41:15 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/23 13:36:01 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ void Replacer::replace(void)
 {
     std::string content = this->_getInputFileContent();
     size_t pos = 0;
+
+    if (this->_old_str.empty())
+    {
+        std::cout << "Error: Old string is empty" << std::endl;
+        return;
+    }
+    if (this->_new_str.empty())
+    {
+        std::cout << "Error: New string is empty" << std::endl;
+        return;
+    }
 
     while ((pos = content.find(this->_old_str, pos)) != std::string::npos)
     {
