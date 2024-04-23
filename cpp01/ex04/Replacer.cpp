@@ -6,7 +6,7 @@
 /*   By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:58:13 by lyeh              #+#    #+#             */
-/*   Updated: 2024/04/23 13:36:01 by lyeh             ###   ########.fr       */
+/*   Updated: 2024/04/23 15:35:19 by lyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Replacer::Replacer(std::string filename, std::string old_str, std::string new_st
     if (!file.is_open())
     {
         std::cout << "Error: File not found" << std::endl;
+        this->_input_fp = "";
         return;
     }
 
@@ -40,20 +41,27 @@ void Replacer::replace(void)
     std::string content = this->_getInputFileContent();
     size_t pos = 0;
 
+    if (this->_file_content.str().empty())
+    {
+        std::cout << "Error: File is empty" << std::endl;
+        return;
+    }
+    if (this->_old_str.empty() && this->_new_str.empty())
+    {
+        std::cout << "Error: Old and New string is empty" << std::endl;
+        return;
+    }
     if (this->_old_str.empty())
     {
         std::cout << "Error: Old string is empty" << std::endl;
         return;
     }
-    if (this->_new_str.empty())
-    {
-        std::cout << "Error: New string is empty" << std::endl;
-        return;
-    }
 
     while ((pos = content.find(this->_old_str, pos)) != std::string::npos)
     {
-        content.replace(pos, this->_old_str.length(), this->_new_str);
+        std::string first_part = content.substr(0, pos);
+        std::string second_part = content.substr(pos + this->_old_str.length());
+        content = first_part + this->_new_str + second_part;
         pos += this->_new_str.length();
     }
 

@@ -1,13 +1,13 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(const std::string& name, Weapon& weapon) : _name(name), _weapon(weapon)
+HumanA::HumanA(const std::string &name, Weapon &weapon) : _name(name), _weapon(weapon)
 {
-    std::cout << "HumanA constructor called" << std::endl;
+    std::cout << "HumanA " << this->_name << " constructor called" << std::endl;
 }
 
 HumanA::~HumanA(void)
 {
-    std::cout << "HumanA destructor called" << std::endl;
+    std::cout << "HumanA " << this->_name << " destructor called" << std::endl;
 }
 
 void HumanA::attack(void)
