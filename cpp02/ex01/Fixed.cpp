@@ -35,3 +35,9 @@ Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed_num)
+{
+    os << fixed_num.toFloat();
+    return os;
+}

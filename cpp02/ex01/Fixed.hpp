@@ -22,6 +22,8 @@ public:
 private:
     int _value;
     static const int FRACT_BITS = 8;
+
+    
 };
 
 #endif // __FIXED_HPP
