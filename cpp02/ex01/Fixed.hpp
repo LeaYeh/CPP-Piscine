@@ -21,9 +21,9 @@ public:
 
 private:
     int _value;
-    static const int FRACT_BITS = 8;
-
-    
+    static const int _FRACT_BITS = 8;
 };
+
+std::ostream &operator<<(std::ostream &os, const Fixed &num);
 
 #endif // __FIXED_HPP
