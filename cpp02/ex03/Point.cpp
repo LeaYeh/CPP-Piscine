@@ -12,6 +12,10 @@ Point &Point::operator=(const Point &other)
 {
     if (this != &other)
     {
+        // This one works, but this is an undefined behavior
+        // https://en.cppreference.com/w/cpp/language/const_cast
+        // const_cast<Fixed&>(_x) = other.getX();
+        // const_cast<Fixed&>(_y) = other.getY();
         // Copy operator be called, but the attr. is const!
         // I think delete the copy operator is more safty but the subject ask me to overwrite ...
         // so I decide to overwirte but do nothing in copy operator
