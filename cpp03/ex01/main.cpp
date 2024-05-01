@@ -1,11 +1,12 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap a("Alex");
-	ClapTrap b("Bob");
-	ClapTrap c(a);
-	ClapTrap d;
+	ScavTrap a("Alex");
+	ScavTrap b("Bob");
+	ScavTrap c(a);
+	ScavTrap d;
+
 	d = b;
 
 	a.attack(b.getName());
