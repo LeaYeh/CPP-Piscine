@@ -14,6 +14,7 @@ public:
     DiamondTrap &operator=(const DiamondTrap &other);
 
     void whoAmI();
+    void printStatus() const;
 
 private:
     std::string _name;

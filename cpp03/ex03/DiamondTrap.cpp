@@ -34,3 +34,12 @@ void DiamondTrap::whoAmI()
 {
     std::cout << "My name is " << this->_name << ", but my ClapTrap name is " << ClapTrap::getName() << "\n";
 }
+
+void DiamondTrap::printStatus(void) const
+{
+    std::cout << "Name: " << this->_name << "; ";
+    std::cout << "Hit Point: " << this->_hitPoint << "; ";
+    std::cout << "Energe Point: " << this->_energyPoint << "; ";
+    std::cout << "Attck Damage: " << this->_attackDamage << std::endl;
+    std::cout << std::endl;
+}
