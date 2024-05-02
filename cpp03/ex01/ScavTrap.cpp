@@ -46,11 +46,10 @@ void ScavTrap::guardGate()
 
 void ScavTrap::attack(const std::string &target)
 {
-    this->guardGate();
     if (!this->checkAction("attack " + target))
         return;
-    std::cout << "ScavTrap " << this->getName() << " attacks " << target \
-            << ", causing " << this->getAttackDamage() << " points of damage!\n";
+    std::cout << "ScavTrap " << this->getName() << " attacks " << target
+              << ", causing " << this->getAttackDamage() << " points of damage!\n";
     this->_energyPoint--;
     this->printStatus();
 }

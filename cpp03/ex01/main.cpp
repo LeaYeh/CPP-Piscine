@@ -20,5 +20,6 @@ int	main(void)
 	for (int i = 0; i < 10; ++i) {
 		b.beRepaired(10);
 	}
+	b.guardGate();
 	b.beRepaired(10);
 }
