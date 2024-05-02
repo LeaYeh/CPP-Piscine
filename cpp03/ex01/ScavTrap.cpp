@@ -3,10 +3,6 @@
 ScavTrap::ScavTrap()
 {
     std::cout << "Default constructor called: ScavTrap\n";
-    this->_name = "";
-    this->_hitPoint = 100;
-    this->_energyPoint = 50;
-    this->_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const std::string &name)
