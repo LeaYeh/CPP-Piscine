@@ -3,6 +3,7 @@
 Cat::Cat() : Animal("Cat")
 {
     std::cout << "Default constructor called: Cat\n";
+    
 }
 
 Cat::Cat(const Cat &other) : Animal(other)

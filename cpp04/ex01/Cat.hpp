@@ -2,6 +2,7 @@
 #define __CAT_H__
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : virtual public Animal
 {
@@ -16,6 +17,7 @@ public:
 
 protected:
 private:
+    Brain *_brain;
 };
 
 #endif

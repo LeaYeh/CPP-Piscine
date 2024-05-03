@@ -2,6 +2,7 @@
 #define __DOG_H__
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : virtual public Animal
 {
@@ -16,6 +17,7 @@ public:
 
 protected:
 private:
+    Brain *_brain;
 };
 
 #endif
