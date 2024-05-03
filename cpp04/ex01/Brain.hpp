@@ -6,15 +6,17 @@
 class Brain
 {
 public:
+    static const int NUM_IDEA = 100;
     Brain();
     Brain(const Brain &other);
     ~Brain();
     Brain &operator=(const Brain &other);
+    const std::string& getIdea(const unsigned int i) const;
+    void setIdea(const unsigned i, const std::string &idea);
 
 protected:
 private:
-    static const int _NUM_IDEA = 100;
-    std::string _ideas[_NUM_IDEA];
+    std::string _ideas[NUM_IDEA];
 };
 
 #endif

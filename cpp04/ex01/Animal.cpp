@@ -24,8 +24,17 @@ Animal::~Animal()
 
 Animal &Animal::operator=(const Animal &other)
 {
+    std::cout << "Copy operator & called: Animal\n";
     if (this != &other)
         this->type = other.type;
+    return *this;
+}
+
+Animal &Animal::operator=(const Animal *other)
+{
+    std::cout << "Copy operator * called: Animal\n";
+    if (this != other)
+        this->type = other->type;
     return *this;
 }
 

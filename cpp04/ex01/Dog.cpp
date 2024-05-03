@@ -18,7 +18,8 @@ Dog::~Dog()
 Dog &Dog::operator=(const Dog &other)
 {
     std::cout << "Copy operator called: Dog\n";
-    Animal::operator=(other);
+    this->_brain = other.getBrain();
+    delete this->_brain;
     return *this;
 }
 
@@ -30,4 +31,9 @@ void Dog::makeSound() const
 const std::string &Dog::getType() const
 {
     return this->type;
+}
+
+Brain *Dog::getBrain() const
+{
+    return this->_brain;
 }

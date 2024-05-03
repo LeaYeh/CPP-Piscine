@@ -6,37 +6,17 @@
 
 int main(void)
 {
-    {
-        const Animal *meta = new Animal();
-        const Animal *j = new Dog();
-        const Animal *i = new Cat();
+    const int size = 10;
+    Animal* animal_array[size];
 
-        std::cout << "==========================\n";
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
-        meta->makeSound();
-        i->makeSound();
-        j->makeSound();
-        std::cout << "==========================\n";
-        delete meta;
-        delete i;
-        delete j;
-        std::cout << "==========================\n";
-    }
-    {
-        const WrongAnimal *meta = new WrongAnimal();
-        const WrongAnimal *i = new WrongCat();
+    for (int i = 0; i < size / 2; i++)
+        animal_array[i] = new Cat();
 
-        std::cout << "==========================\n";
-        std::cout << i->getType() << " " << std::endl;
-        meta->makeSound();
-        i->makeSound();
+    for (int i = size / 2; i < size; i++)
+        animal_array[i] = new Dog();
+    
+    for (int i = 0; i < size; i++)
+        delete animal_array[i];
 
-        std::cout << "==========================\n";
-        delete meta;
-        delete i;
-        std::cout << "==========================\n";
-    }
-    std::cout << "==========================\n";
     return 0;
 }
