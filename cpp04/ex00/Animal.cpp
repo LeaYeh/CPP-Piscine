@@ -31,7 +31,13 @@ Animal &Animal::operator=(const Animal &other)
 
 void Animal::makeSound() const
 {
-    std::cout << "Animal: balabala\n";
+    std::cout << "balabala\n";
+}
+
+void Animal::printInfo() const
+{
+    std::cout << "It is a " << this->getType() << ": ";
+    this->makeSound();
 }
 
 const std::string &Animal::getType() const

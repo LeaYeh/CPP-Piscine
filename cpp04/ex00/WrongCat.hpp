@@ -10,9 +10,7 @@ public:
     WrongCat(const WrongCat &other);
     ~WrongCat();
     WrongCat &operator=(const WrongCat &other);
-
     void makeSound() const;
-    const std::string &getType() const;
 
 protected:
 private:

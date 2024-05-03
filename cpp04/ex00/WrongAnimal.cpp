@@ -32,10 +32,16 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << "WrongAnimal: balabala\n";
+    std::cout << "balabala\n";
 }
 
 const std::string &WrongAnimal::getType() const
 {
     return this->type;
+}
+
+void WrongAnimal::printInfo() const
+{
+    std::cout << "It is a " << this->getType() << ": ";
+    this->makeSound();
 }
