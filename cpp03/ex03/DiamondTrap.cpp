@@ -27,6 +27,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
 {
     std::cout << "Copy operator called: DiamondTrap\n";
     ClapTrap::operator=(other);
+    this->_name = other.getName();
     return *this;
 }
 
