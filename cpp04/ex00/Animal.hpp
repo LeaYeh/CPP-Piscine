@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+// Notes: Function can be overwrite without virtual but virtual could let the function choose during the runtime
 class Animal
 {
 public:
