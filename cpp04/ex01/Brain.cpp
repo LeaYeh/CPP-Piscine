@@ -41,3 +41,9 @@ void Brain::setIdea(const unsigned i, const std::string &idea)
     }
     this->_ideas[i] = idea;
 }
+
+void Brain::printIdea(const unsigned i) const
+{
+    std::cout << "The index " << i << " idea in the brain is: " << this->getIdea(i);
+    std::cout << std::endl;
+}

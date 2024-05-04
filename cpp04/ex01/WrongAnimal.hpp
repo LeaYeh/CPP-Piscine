@@ -13,6 +13,7 @@ public:
     WrongAnimal &operator=(const WrongAnimal &other);
 
     void makeSound() const;
+    void printInfo() const;
     const std::string &getType() const;
 
 protected:

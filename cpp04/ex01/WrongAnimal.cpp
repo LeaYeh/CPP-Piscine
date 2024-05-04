@@ -39,3 +39,9 @@ const std::string &WrongAnimal::getType() const
 {
     return this->type;
 }
+
+void WrongAnimal::printInfo() const
+{
+    std::cout << "It is a " << this->getType() << ": ";
+    this->makeSound();
+}

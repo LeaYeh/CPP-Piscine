@@ -47,3 +47,10 @@ const std::string &Animal::getType() const
 {
     return this->type;
 }
+
+void Animal::printInfo() const
+{
+    std::cout << "It is a " << this->getType() << ": ";
+    this->makeSound();
+}
+
