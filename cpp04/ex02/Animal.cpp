@@ -30,19 +30,6 @@ Animal &Animal::operator=(const Animal &other)
     return *this;
 }
 
-Animal &Animal::operator=(const Animal *other)
-{
-    std::cout << "Copy operator * called: Animal\n";
-    if (this != other)
-        this->type = other->type;
-    return *this;
-}
-
-void Animal::makeSound() const
-{
-    std::cout << "Animal: balabala\n";
-}
-
 const std::string &Animal::getType() const
 {
     return this->type;
@@ -52,9 +39,4 @@ void Animal::printInfo() const
 {
     std::cout << "It is a " << this->getType() << ": ";
     this->makeSound();
-}
-
-void Animal::printAllThought() const
-{
-    std::cout << "Animal: Sorry I don't have a brain...\n";
 }

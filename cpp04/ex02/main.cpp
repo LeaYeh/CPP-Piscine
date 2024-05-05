@@ -22,6 +22,23 @@ int main(void)
     return 0;
 }
 
+/*
+Notes: For an abstract Animal class, now the constructor can not be called
+void testAnimal()
+{
+    std::cout << "\n--- TEST Animal ---\n";
+    std::cout << "--- TEST Detault Constructor ---\n";
+    Animal a;
+    a.printInfo();
+    std::cout << "\n--- TEST Copy Constructor ---\n";
+    Animal b(a);
+    b.printInfo();
+    std::cout << "\n--- TEST Copy Operator ---\n";
+    a = b;
+    a.printInfo();
+}
+*/
+
 void testSubject()
 {
     std::cout << "\n--- TEST Subject example ---\n";
