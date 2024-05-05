@@ -1,16 +1,22 @@
 #include "Brain.hpp"
 
-
 Brain::Brain()
 {
     std::cout << "Default constructor called: Brain\n";
+    for (int i = 0; i < NUM_IDEA; i++)
+        this->setIdea(i, "");
 }
 
 Brain::Brain(const Brain &other)
 {
     std::cout << "Copy constructor called: Brain\n";
-    for (int i = 0; i < Brain::NUM_IDEA; i++)
-        this->_ideas[i] = other.getIdea(i);
+    if (this != &other)
+    {
+        for (int i = 0; i < Brain::NUM_IDEA; i++)
+            this->_ideas[i] = other.getIdea(i);
+    }
+    std::cout << "Address _ideas hold by this:\t" << this->_ideas << "\n";
+    std::cout << "Address _ideas hold by other:\t" << other._ideas << "\n";
 }
 
 Brain::~Brain()
@@ -21,14 +27,20 @@ Brain::~Brain()
 Brain &Brain::operator=(const Brain &other)
 {
     std::cout << "Copy operator called: Brain\n";
-    for (int i = 0; i < Brain::NUM_IDEA; i++)
-        this->_ideas[i] = other.getIdea(i);
+    if (this != &other)
+    {
+        for (int i = 0; i < Brain::NUM_IDEA; i++)
+            this->_ideas[i] = other._ideas[i];
+    }
+    std::cout << "Address _ideas hold by this:\t" << this->_ideas << "\n";
+    std::cout << "Address _ideas hold by other:\t" << other._ideas << "\n";
     return *this;
 }
 
-const std::string& Brain::getIdea(const unsigned int i) const
+const std::string &Brain::getIdea(const unsigned int i) const
 {
-    if (i >= Brain::NUM_IDEA) {
+    if (i >= Brain::NUM_IDEA)
+    {
         throw std::out_of_range("Index is out of range");
     }
     return this->_ideas[i];
@@ -36,7 +48,8 @@ const std::string& Brain::getIdea(const unsigned int i) const
 
 void Brain::setIdea(const unsigned i, const std::string &idea)
 {
-    if (i >= Brain::NUM_IDEA) {
+    if (i >= Brain::NUM_IDEA)
+    {
         throw std::out_of_range("Index is out of range");
     }
     this->_ideas[i] = idea;

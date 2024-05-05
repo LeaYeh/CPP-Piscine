@@ -12,9 +12,11 @@ public:
     ~Dog();
     Dog &operator=(const Dog &other);
 
-    void makeSound() const;
-    const std::string &getType() const;
     Brain *getBrain() const;
+    const std::string &getType() const;
+    void think(const std::string &idea);
+    void makeSound() const;
+    void printAllThought() const;
 
 protected:
 private:

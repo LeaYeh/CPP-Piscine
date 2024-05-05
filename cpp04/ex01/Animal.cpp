@@ -54,3 +54,7 @@ void Animal::printInfo() const
     this->makeSound();
 }
 
+void Animal::printAllThought() const
+{
+    std::cout << "Animal: Sorry I don't have a brain...\n";
+}

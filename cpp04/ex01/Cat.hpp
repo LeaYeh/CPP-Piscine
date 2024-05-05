@@ -12,10 +12,11 @@ public:
     ~Cat();
     Cat &operator=(const Cat &other);
 
-    void makeSound() const;
+    Brain *getBrain() const;
     const std::string &getType() const;
     void think(const std::string &idea);
-    Brain *getBrain() const;
+    void makeSound() const;
+    void printAllThought() const;
 
 protected:
 private:
