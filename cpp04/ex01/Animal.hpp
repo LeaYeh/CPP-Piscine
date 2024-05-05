@@ -7,7 +7,6 @@ class Animal
 {
 public:
     Animal();
-    Animal(const std::string &type);
     Animal(const Animal &other);
     virtual ~Animal();
     Animal &operator=(const Animal &other);
@@ -19,6 +18,7 @@ public:
     virtual void printAllThought() const;
 
 protected:
+    Animal(const std::string &type);
     std::string type;
 
 private:
