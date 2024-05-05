@@ -1,9 +1,8 @@
 #pragma once
-#ifndef __MATERIA_H__
-#define __MATERIA_H__
-
 #include <iostream>
-#include "Character.hpp"
+
+// Note: use forward declaration to avoid circular dependency
+class ICharacter;
 
 class AMateria
 {
@@ -14,12 +13,10 @@ public:
     virtual ~AMateria();
     AMateria &operator=(const AMateria &other);
     std::string const &getType() const;
-    virtual AMateria *clone() const = 0;
     virtual void use(ICharacter &target);
+    virtual AMateria *clone() const = 0;
 
 protected:
 private:
     std::string _type;
 };
-
-#endif

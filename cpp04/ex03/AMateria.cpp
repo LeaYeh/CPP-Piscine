@@ -33,3 +33,8 @@ const std::string &AMateria::getType() const
 {
     return this->_type;
 }
+
+void AMateria::use(ICharacter &target)
+{
+    std::cout << "Casts a freezing spell on " << target.getName() << std::endl;
+}

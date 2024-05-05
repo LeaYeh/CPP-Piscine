@@ -1,6 +1,4 @@
 #pragma once
-#ifndef __MATERIA_H__
-#define __MATERIA_H__
 
 #include "AMateria.hpp"
 
@@ -13,5 +11,3 @@ public:
     virtual void unequip(int idx) = 0;
     virtual void use(int idx, ICharacter &target) = 0;
 };
-
-#endif
