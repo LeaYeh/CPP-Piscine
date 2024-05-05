@@ -1,17 +1,15 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("Cat")
+Cat::Cat() : Animal("Cat"), _brain(new Brain())
 {
     std::cout << "Default constructor called: Cat\n";
-    this->_brain = new Brain();
+    std::cout << "Address hold the brain:\t" << this->_brain << "\n";
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
     std::cout << "Copy constructor called: Cat\n";
-    this->_brain = other.getBrain();
-    // for (int i = 0; i < Brain::NUM_IDEA; i++)
-    //     this->_brain->setIdea(i, other.getBrain()->getIdea(i));
+    *this->_brain = *other.getBrain();
 }
 
 Cat::~Cat()
@@ -23,7 +21,9 @@ Cat::~Cat()
 Cat &Cat::operator=(const Cat &other)
 {
     std::cout << "Copy operator called: Cat\n";
-    this->_brain = other.getBrain();
+    *this->_brain = *other.getBrain();
+    std::cout << "Address hold by other:\t" << other._brain << "\n";
+	std::cout << "Address hold by this:\t" << this->_brain << "\n";
     return *this;
 }
 
@@ -40,4 +40,9 @@ const std::string &Cat::getType() const
 Brain *Cat::getBrain() const
 {
     return this->_brain;
+}
+
+void Cat::think(const std::string &idea)
+{
+    this->getBrain()->setIdea()
 }

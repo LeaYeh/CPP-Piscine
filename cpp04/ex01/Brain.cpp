@@ -47,3 +47,13 @@ void Brain::printIdea(const unsigned i) const
     std::cout << "The index " << i << " idea in the brain is: " << this->getIdea(i);
     std::cout << std::endl;
 }
+
+void Brain::printAllIdea() const
+{
+    for (int i = 0; i < Brain::NUM_IDEA; i++)
+    {
+        const std::string &tmp = this->getIdea(i);
+        if (!tmp.empty())
+            this->printIdea(i);
+    }
+}

@@ -14,6 +14,7 @@ public:
     const std::string& getIdea(const unsigned int i) const;
     void setIdea(const unsigned i, const std::string &idea);
     void printIdea(const unsigned i) const;
+    void printAllIdea() const;
 
 protected:
 private:

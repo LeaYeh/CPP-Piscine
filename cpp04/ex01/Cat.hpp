@@ -14,6 +14,7 @@ public:
 
     void makeSound() const;
     const std::string &getType() const;
+    void think(const std::string &idea);
     Brain *getBrain() const;
 
 protected:
