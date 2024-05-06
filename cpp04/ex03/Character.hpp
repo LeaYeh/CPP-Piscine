@@ -1,5 +1,4 @@
-#ifndef __CHARACTER_H__
-#define __CHARACTER_H__
+#pragma once
 
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
@@ -7,7 +6,9 @@
 class Character : public ICharacter
 {
 public:
+    static const int NUM_MEMORY_SLOT = 4;
     Character();
+    Character(const std::string &name);
     Character(const Character&other);
     ~Character();
     Character &operator=(const Character &other);
@@ -18,11 +19,8 @@ public:
     void use(int idx, ICharacter &target);
 
 protected:
-    Character(const std::string &name);
 
 private:
-    AMateria* _memory_slot[4];
+    AMateria* _memory_slot[NUM_MEMORY_SLOT];
     std::string _name;
 };
-
-#endif
