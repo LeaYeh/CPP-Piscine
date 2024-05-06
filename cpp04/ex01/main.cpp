@@ -77,14 +77,7 @@ void testBrain()
 
     a.setIdea(0, "haha0");
     a.setIdea(11, "haha11");
-    try
-    {
-        a.setIdea(100, "haha101");
-    }
-    catch (const std::out_of_range &e)
-    {
-        std::cout << "We should not access/write out of range QQ.\n";
-    }
+    a.setIdea(100, "haha101");
     a.printAllIdea();
     std::cout << "\n--- TEST Copy Constructor ---\n";
     Brain b(a);

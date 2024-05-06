@@ -39,9 +39,13 @@ Brain &Brain::operator=(const Brain &other)
 
 const std::string &Brain::getIdea(const unsigned int i) const
 {
+    // the static varible lifecycle is entire program and only be created once
+    static std::string emptyString;
+
     if (i >= Brain::NUM_IDEA)
     {
-        throw std::out_of_range("Index is out of range");
+        std::cout << "Index is out of range\n";
+        return emptyString;
     }
     return this->_ideas[i];
 }
@@ -50,7 +54,8 @@ void Brain::setIdea(const unsigned i, const std::string &idea)
 {
     if (i >= Brain::NUM_IDEA)
     {
-        throw std::out_of_range("Index is out of range");
+        std::cout << "Index is out of range\n";
+        return;
     }
     this->_ideas[i] = idea;
 }
