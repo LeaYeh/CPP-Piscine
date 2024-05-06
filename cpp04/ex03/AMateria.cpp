@@ -36,5 +36,5 @@ const std::string &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-    std::cout << "Casts a freezing spell on " << target.getName() << std::endl;
+    std::cout << "Use balabala magic to " << target.getName() << std::endl;
 }

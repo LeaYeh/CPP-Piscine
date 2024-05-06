@@ -19,12 +19,9 @@ Character::Character(const Character &other) : _name(other.getName())
     std::cout << "Copy constructor called: Character\n";
     for (int i = 0; i < NUM_MEMORY_SLOT; i++)
     {
-        if (this->_memory_slot[i])
-        {
-            delete this->_memory_slot[i];
-            this->_memory_slot[i] = NULL;
-        }
-        this->_memory_slot[i] = other._memory_slot[i]->clone();
+        this->_memory_slot[i] = NULL;
+        if (other._memory_slot[i])
+            this->_memory_slot[i] = other._memory_slot[i]->clone();
     }
 }
 
@@ -49,9 +46,11 @@ Character &Character::operator=(const Character &other)
         this->_name = other.getName();
         for (int i = 0; i < NUM_MEMORY_SLOT; i++)
         {
-            if (this->_memory_slot[i])
+            if (this->_memory_slot[i] != NULL)
                 delete this->_memory_slot[i];
-            this->_memory_slot[i] = other._memory_slot[i]->clone();
+            if (other._memory_slot[i])
+                this->_memory_slot[i] = other._memory_slot[i]->clone();
+            this->_memory_slot[i] = NULL;
         }
     }
     return *this;
@@ -64,6 +63,14 @@ const std::string &Character::getName() const
 
 void Character::equip(AMateria *m)
 {
+    for (int i = 0; i < NUM_MEMORY_SLOT; i++)
+    {
+        if(this->_memory_slot[i] == m)
+        {
+            std::cout << "equip: The materia(" << m << ") already be equipped at slot[" << i << "].\n";
+            return;
+        }
+    }
     for (int i = 0; i < NUM_MEMORY_SLOT; i++)
     {
         if (this->_memory_slot[i] == NULL)
@@ -89,6 +96,8 @@ void Character::unequip(int idx)
         return;
     }
     std::cout << "unequip: Index[" << idx << "] the " << this->_memory_slot[idx]->getType() << " is unloaded.\n";
+    delete this->_memory_slot[idx];
+    this->_memory_slot[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
@@ -104,4 +113,20 @@ void Character::use(int idx, ICharacter &target)
         return;
     }
     this->_memory_slot[idx]->use(target);
+}
+
+void Character::printInfo() const
+{
+    std::cout << "My name is " << this->getName() << " and I know ";
+    if (this->_memory_slot[0] == NULL)
+    {
+        std::cout << "nothing...\n";
+        return;
+    }
+    for (int i = 0; i < NUM_MEMORY_SLOT; i++)
+    {
+        if (this->_memory_slot[i])
+            std::cout << this->_memory_slot[i]->getType() << " ";
+    }
+    std::cout << std::endl;
 }

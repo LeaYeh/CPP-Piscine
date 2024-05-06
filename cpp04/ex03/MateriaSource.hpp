@@ -19,6 +19,7 @@ public:
 
     void learnMateria(AMateria *);
     AMateria *createMateria(std::string const &type);
+    void printInfo() const;
 
 protected:
     MateriaType toMateriaType(const std::string &type);
