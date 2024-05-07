@@ -6,10 +6,10 @@ WrongAnimal::WrongAnimal()
     std::cout << "Default constructor called: WrongAnimal\n";
 }
 
-WrongAnimal::WrongAnimal(const std::string &type)
+WrongAnimal::WrongAnimal(const std::string &typeParam)
 {
-    std::cout << "Type constructor called: WrongAnimal(" << type << ")\n";
-    this->type = type;
+    std::cout << "Type constructor called: WrongAnimal(" << typeParam << ")\n";
+    this->type = typeParam;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
