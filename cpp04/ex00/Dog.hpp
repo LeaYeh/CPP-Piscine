@@ -3,7 +3,13 @@
 
 #include "Animal.hpp"
 
-class Dog : virtual public Animal
+
+/* Notes:
+    - virtual inherit scenario is for solving diamond issue
+    - for simple inheritation structure the virtual inherit is not nescessary
+    - when design a class which might be inherit in complex way, then could use virtual inherit for safety
+*/
+class Dog : public Animal
 {
 public:
     Dog();
