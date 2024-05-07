@@ -118,10 +118,15 @@ void testDogWithBrain()
     std::cout << "\n--- TEST Copy Constructor ---\n";
     Dog b(a);
     b.printInfo();
-    std::cout << "\n--- TEST Copy Operator ---\n";
+    std::cout << "\n--- TEST Copy Operator 1 ---\n";
     Dog d;
     d = a;
     d.printInfo();
+    std::cout << "\n--- TEST Copy Operator 2 ---\n";
+    Dog basic;
+    {
+        Dog tmp = basic;
+    }
     std::cout << "\n--- TEST Virtual ---\n";
     Animal *e = new Dog();
     e->printInfo();
