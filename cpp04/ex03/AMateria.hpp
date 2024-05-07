@@ -17,6 +17,7 @@ public:
     virtual AMateria *clone() const = 0;
 
 protected:
-private:
     std::string _type;
+
+private:
 };

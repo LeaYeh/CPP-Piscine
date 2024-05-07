@@ -8,7 +8,7 @@ Animal::Animal()
 Animal::Animal(const std::string &typeParam)
 {
     std::cout << "Type constructor called: Animal(" << typeParam << ")\n";
-    this->type = type;
+    this->type = typeParam;
 }
 
 Animal::Animal(const Animal &other)
