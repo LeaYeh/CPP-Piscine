@@ -104,7 +104,9 @@ void testWrongCat()
     d.printInfo();
     std::cout << "\n--- TEST Virtual ---\n";
     WrongAnimal *e = new WrongCat();
+    WrongCat f;
     e->printInfo();
+    f.printInfo();
     delete e;
 }
 
