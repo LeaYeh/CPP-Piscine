@@ -5,10 +5,10 @@ Animal::Animal()
     std::cout << "Default constructor called: Animal\n";
 }
 
-Animal::Animal(const std::string &type)
+Animal::Animal(const std::string &typeParam)
 {
-    std::cout << "Type constructor called: Animal(" << type << ")\n";
-    this->type = type;
+    std::cout << "Type constructor called: Animal(" << typeParam << ")\n";
+    this->type = typeParam;
 }
 
 Animal::Animal(const Animal &other)
