@@ -3,6 +3,11 @@
 
 #include <iostream>
 
+/*
+Notes:
+    - If no virtual infront of ~Animal() this will only call Animal's destructor, not child class (e.g. Cat)
+    - And it will occur a leak, because the child destructor not be called
+*/
 class Animal
 {
 public:
