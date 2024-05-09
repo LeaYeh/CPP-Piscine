@@ -48,9 +48,9 @@ Character &Character::operator=(const Character &other)
         {
             if (this->_memory_slot[i] != NULL)
                 delete this->_memory_slot[i];
+            this->_memory_slot[i] = NULL;
             if (other._memory_slot[i])
                 this->_memory_slot[i] = other._memory_slot[i]->clone();
-            this->_memory_slot[i] = NULL;
         }
     }
     return *this;
