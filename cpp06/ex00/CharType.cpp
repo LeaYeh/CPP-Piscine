@@ -26,7 +26,9 @@ CharType &CharType::operator=(const CharType &other)
 // 0.1f -> '*'
 void CharType::_setValidType(void)
 {
-    if (this->isValidFloat() && !this->isValidInt())
+    if (this->isValidInt())
+        this->_check_type = NON_DISPLAY;
+    else if (this->isValidFloat())
         this->_check_type = SPECIAL;
     else if (this->_content.length() != 1)
         this->_check_type = NON_DISPLAY;
