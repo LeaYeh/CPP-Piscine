@@ -25,11 +25,11 @@ enum TypeIndex
 class ADataType
 {
 public:
-    ADataType();
+    ADataType() {};
     ADataType(const ADataType &other);
     ADataType(std::string const &type);
     ADataType &operator=(const ADataType &other);
-    virtual ~ADataType();
+    virtual ~ADataType() {};
 
     bool isNegativeInfinity(void) const;
     bool isPositiveInfinity(void) const;

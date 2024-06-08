@@ -1,28 +1,12 @@
 #include "ADataType.hpp"
 
-ADataType::ADataType()
-{
-    // std::cout << "Default constructor called: ADataType\n";
-}
 
-ADataType::ADataType(const std::string &content) : _content(content)
-{
-    // std::cout << "Type constructor called: ADataType(" << content << ")\n";
-}
+ADataType::ADataType(const std::string &content) : _content(content) {}
 
-ADataType::ADataType(const ADataType &other) : _content(other._content)
-{
-    // std::cout << "Copy constructor called: ADataType\n";
-}
-
-ADataType::~ADataType()
-{
-    // std::cout << "Destructor called: ADataType\n";
-}
+ADataType::ADataType(const ADataType &other) : _content(other._content) {}
 
 ADataType &ADataType::operator=(const ADataType &other)
 {
-    // std::cout << "Copy operator & called: ADataType\n";
     if (this != &other)
         this->_content = other._content;
     return *this;

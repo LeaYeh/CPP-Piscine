@@ -1,29 +1,13 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() : _input("")
-{
-    // std::cout << "Default constructor called: ScalarConverter\n";
-}
+ScalarConverter::ScalarConverter() : _input("") {}
 
-ScalarConverter::ScalarConverter(const std::string &input) : _input(input)
-{
-    // std::cout << "Type constructor called: ScalarConverter(" << input << ")\n";
-}
+ScalarConverter::ScalarConverter(const std::string &input) : _input(input) {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &other)
-{
-    // std::cout << "Copy constructor called: ScalarConverter\n";
-    this->_input = other._input;
-}
-
-ScalarConverter::~ScalarConverter()
-{
-    // std::cout << "Destructor called: ScalarConverter\n";
-}
+ScalarConverter::ScalarConverter(const ScalarConverter &other) : _input(other._input) {}
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
-    // std::cout << "Copy operator & called: ScalarConverter\n";
     this->_input = other._input;
     return *this;
 }

@@ -2,25 +2,15 @@
 
 DoubleType::DoubleType() : ADataType()
 {
-    // std::cout << "Default constructor called: DoubleType\n";
     this->_data_type = "double";
 }
 
 DoubleType::DoubleType(const std::string &content) : ADataType(content)
 {
-    // std::cout << "Type constructor called: DoubleType(" << content << ")\n";
     this->_data_type = "double";
 }
 
-DoubleType::DoubleType(const DoubleType &other) : ADataType(other)
-{
-    // std::cout << "Copy constructor called: DoubleType\n";
-}
-
-DoubleType::~DoubleType()
-{
-    // std::cout << "Destructor called: DoubleType\n";
-}
+DoubleType::DoubleType(const DoubleType &other) : ADataType(other) {}
 
 DoubleType &DoubleType::operator=(const DoubleType &other)
 {

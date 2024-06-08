@@ -9,7 +9,7 @@ public:
     IntType(const IntType &other);
     IntType(std::string const &type);
     IntType &operator=(const IntType &other);
-    virtual ~IntType();
+    virtual ~IntType() {};
 
 protected:
     virtual void _setValidType(void);

@@ -9,7 +9,7 @@ public:
     FloatType(const FloatType &other);
     FloatType(std::string const &type);
     FloatType &operator=(const FloatType &other);
-    virtual ~FloatType();
+    virtual ~FloatType() {};
 
 protected:
     virtual void _setValidType(void);

@@ -9,7 +9,7 @@ public:
     CharType(const CharType &other);
     CharType(std::string const &type);
     CharType &operator=(const CharType &other);
-    virtual ~CharType();
+    virtual ~CharType() {};
 
 protected:
     virtual void _setValidType(void);

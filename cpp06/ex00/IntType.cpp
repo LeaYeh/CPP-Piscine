@@ -2,29 +2,18 @@
 
 IntType::IntType() : ADataType()
 {
-    // std::cout << "Default constructor called: IntType\n";
     this->_data_type = "int";
 }
 
 IntType::IntType(const std::string &content) : ADataType(content)
 {
-    // std::cout << "Type constructor called: IntType(" << content << ")\n";
     this->_data_type = "int";
 }
 
-IntType::IntType(const IntType &other) : ADataType(other)
-{
-    // std::cout << "Copy constructor called: IntType\n";
-}
-
-IntType::~IntType()
-{
-    // std::cout << "Destructor called: IntType\n";
-}
+IntType::IntType(const IntType &other) : ADataType(other) {}
 
 IntType &IntType::operator=(const IntType &other)
 {
-    // std::cout << "Copy operator & called: IntType\n";
     if (this != &other)
         ADataType::operator=(other);
     return *this;

@@ -9,7 +9,7 @@ public:
     DoubleType(const DoubleType &other);
     DoubleType(std::string const &type);
     DoubleType &operator=(const DoubleType &other);
-    virtual ~DoubleType();
+    virtual ~DoubleType() {};
 
 protected:
     virtual void _setValidType(void);

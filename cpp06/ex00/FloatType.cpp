@@ -2,29 +2,18 @@
 
 FloatType::FloatType() : ADataType()
 {
-    // std::cout << "Default constructor called: FloatType\n";
     this->_data_type = "float";
 }
 
 FloatType::FloatType(const std::string &content) : ADataType(content)
 {
-    // std::cout << "Type constructor called: FloatType(" << content << ")\n";
     this->_data_type = "float";
 }
 
-FloatType::FloatType(const FloatType &other) : ADataType(other)
-{
-    // std::cout << "Copy constructor called: FloatType\n";
-}
-
-FloatType::~FloatType()
-{
-    // std::cout << "Destructor called: FloatType\n";
-}
+FloatType::FloatType(const FloatType &other) : ADataType(other) {}
 
 FloatType &FloatType::operator=(const FloatType &other)
 {
-    // std::cout << "Copy operator & called: FloatType\n";
     if (this != &other)
         ADataType::operator=(other);
     return *this;

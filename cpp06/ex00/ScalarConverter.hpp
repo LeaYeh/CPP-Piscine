@@ -11,7 +11,7 @@ public:
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter(std::string const &type);
     ScalarConverter &operator=(const ScalarConverter &other);
-    virtual ~ScalarConverter();
+    virtual ~ScalarConverter() {};
 
     void run(void) const;
 

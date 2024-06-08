@@ -2,29 +2,18 @@
 
 CharType::CharType() : ADataType()
 {
-    // std::cout << "Default constructor called: CharType\n";
     this->_data_type = "char";
 }
 
 CharType::CharType(const std::string &content) : ADataType(content)
 {
-    // std::cout << "Type constructor called: CharType(" << content << ")\n";
     this->_data_type = "char";
 }
 
-CharType::CharType(const CharType &other) : ADataType(other)
-{
-    // std::cout << "Copy constructor called: CharType\n";
-}
-
-CharType::~CharType()
-{
-    // std::cout << "Destructor called: CharType\n";
-}
+CharType::CharType(const CharType &other) : ADataType(other) {}
 
 CharType &CharType::operator=(const CharType &other)
 {
-    // std::cout << "Copy operator & called: CharType\n";
     if (this != &other)
         ADataType::operator=(other);
     return *this;
