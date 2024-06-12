@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cmath>
+#include <cstdlib>
+#include <cerrno>
+#include <sstream>
 #include <iostream>
-#include <iomanip>
 #include <limits>
 
 enum ValidResultType

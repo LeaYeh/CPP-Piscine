@@ -15,7 +15,7 @@ ADataType &ADataType::operator=(const ADataType &other)
 bool ADataType::isNegativeInfinity(void) const
 {
     char* end;
-    double value = std::strtod(this->_content.c_str(), &end);
+    double value = strtod(this->_content.c_str(), &end);
 
     return (*end == '\0' && value == -std::numeric_limits<double>::infinity());
 }
@@ -23,7 +23,7 @@ bool ADataType::isNegativeInfinity(void) const
 bool ADataType::isPositiveInfinity(void) const
 {
     char* end;
-    double value = std::strtod(this->_content.c_str(), &end);
+    double value = strtod(this->_content.c_str(), &end);
 
     return (*end == '\0' && value == std::numeric_limits<double>::infinity());
 }
@@ -31,7 +31,7 @@ bool ADataType::isPositiveInfinity(void) const
 bool ADataType::isNaN(void) const
 {
     char* end;
-    double value = std::strtod(this->_content.c_str(), &end);
+    double value = strtod(this->_content.c_str(), &end);
 
     return (*end == '\0' && value != value);
 }
@@ -43,9 +43,9 @@ bool ADataType::isValidFloat(void) const
     double value;
 
     tmp = this->_content;
-    if (!tmp.empty() && tmp.back() == 'f')
+    if (!tmp.empty() && tmp[tmp.size() - 1] == 'f')
         tmp = tmp.substr(0, tmp.length() - 1);
-    value = std::strtod(tmp.c_str(), &end);
+    value = strtod(tmp.c_str(), &end);
     return (*end == '\0' && value != HUGE_VAL && value != -HUGE_VAL);;
 }
 
@@ -54,7 +54,7 @@ bool ADataType::isValidInt(void) const
     char* end;
     double value;
 
-    value = std::strtol(this->_content.c_str(), &end, 10);
+    value = strtol(this->_content.c_str(), &end, 10);
     return (*end == '\0' && errno != ERANGE && \
         value >= std::numeric_limits<int>::min() && \
         value <= std::numeric_limits<int>::max());
@@ -74,7 +74,7 @@ std::string ADataType::_getMinPrecision(std::string &str) const
     std::string result = str;
 
     result.erase(str.find_last_not_of('0') + 1, std::string::npos);
-    if (result.back() == '.')
+    if (result[result.size() - 1] == '.')
         result += '0';
     return (result);
 }

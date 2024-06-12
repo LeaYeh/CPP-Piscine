@@ -41,9 +41,11 @@ bool DoubleType::_convert(void)
     else if (this->isPositiveInfinity())
         this->_converted_result = "inf";
     else
-        this->_converted_result = std::to_string(
-            std::strtod(this->_content.c_str(), NULL)
-        );
+    {
+        std::stringstream ss;
+        ss << std::strtod(this->_content.c_str(), NULL);
+        this->_converted_result = ss.str();
+    }
     this->_converted_result = this->_getMinPrecision(this->_converted_result);
     return (true);
 }

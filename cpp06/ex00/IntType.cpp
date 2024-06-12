@@ -33,8 +33,10 @@ bool IntType::_convert(void)
     if (this->_check_type != NORMAL)
         return (false);
     else
-        this->_converted_result = std::to_string(
-            std::strtol(this->_content.c_str(), NULL, 10)
-        );
+    {
+        std::stringstream ss;
+        ss << std::strtol(this->_content.c_str(), NULL, 10);
+        this->_converted_result = ss.str();
+    }
     return (true);
 }
