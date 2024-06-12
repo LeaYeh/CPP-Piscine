@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdlib>
+#include <typeinfo>
 #include <iostream>
 
 #define MAX_TYPE_NUM 3
