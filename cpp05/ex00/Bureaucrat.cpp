@@ -30,6 +30,20 @@ int Bureaucrat::getGrade(void) const
     return (this->_grade);
 }
 
+void Bureaucrat::incrementGrade(void)
+{
+    if (this->_grade - 1 < HIGHEST_GRADE)
+        throw GradeTooHighException();
+    this->_grade--;
+}
+
+void Bureaucrat::decrementGrade(void)
+{
+    if (this->_grade + 1 > LOWEST_GRADE)
+        throw GradeTooLowException();
+    this->_grade++;
+}
+
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
     return ("Grade too high!");
