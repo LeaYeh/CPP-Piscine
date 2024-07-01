@@ -15,12 +15,7 @@ Form::Form(std::string const &name, const int sign_grade, const int exec_grade) 
 Form &Form::operator=(const Form &other)
 {
     if (this != &other)
-    {
-        this->_name = other._name;
         this->_is_signed = other._is_signed;
-        this->_sign_grade = other._sign_grade;
-        this->_exec_grade = other._exec_grade;
-    }
     return (*this);
 }
 
