@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define UNDEFINE_NAME "no-name"
 #define UNDEFINE_GRADE 150
 
-class Form;
+class AForm;
 
 /*
 Notes: Exception in class
@@ -23,7 +23,7 @@ public:
 
     const std::string &getName(void) const;
     int getGrade(void) const;
-    void signForm(Form *form);
+    void signForm(AForm *form);
 
     class GradeTooHighException : public std::exception
     {

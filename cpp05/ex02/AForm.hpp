@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cstdlib>
 #include "Bureaucrat.hpp"
 
 #define DEFAULT_FORM_NAME "no-name"
@@ -15,13 +16,15 @@ public:
     AForm(const AForm &other);
     AForm(std::string const &name, const int sign_grade, const int exec_grade);
     AForm &operator=(const AForm &other);
-    ~AForm(){};
+    virtual ~AForm(){};
 
+    void beSigned(Bureaucrat signer);
     const std::string &getName(void) const;
     const std::string getSignStatus(void) const;
     int getSignGrade(void) const;
     int getExecGrade(void) const;
-    void beSigned(Bureaucrat signer);
+    void execute(Bureaucrat const &executor) const;
+    virtual void handleExecutoion(void) const = 0;
 
     class GradeTooHighException : public std::exception
     {
@@ -36,10 +39,10 @@ public:
 
 protected:
 private:
-    std::string _name;
+    const std::string _name;
     bool _is_signed;
-    int _sign_grade;
-    int _exec_grade;
+    const int _sign_grade;
+    const int _exec_grade;
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &obj);
+std::ostream &operator<<(std::ostream &os, const AForm &obj);
