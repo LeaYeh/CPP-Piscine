@@ -33,7 +33,7 @@ void testShrubberyFormExecute(void)
         form->beSigned(bureaucrat_base);
         std::cout << *form;
         std::cout << bureaucrat_base.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_base);
+        bureaucrat_base.executeForm(*form);
     }
     catch (std::exception &e)
     {
@@ -46,7 +46,7 @@ void testShrubberyFormExecute(void)
         form->beSigned(bureaucrat_admin);
         std::cout << *form;
         std::cout << bureaucrat_admin.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_admin);
+        bureaucrat_admin.executeForm(*form);
     }
     catch (std::exception &e)
     {
@@ -71,7 +71,7 @@ void testRobotomyFormExecute(void)
         form->beSigned(bureaucrat_base);
         std::cout << *form;
         std::cout << bureaucrat_base.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_base);
+        bureaucrat_base.executeForm(*form);
     }
     catch (std::exception &e)
     {
@@ -84,7 +84,7 @@ void testRobotomyFormExecute(void)
         form->beSigned(bureaucrat_admin);
         std::cout << *form;
         std::cout << bureaucrat_admin.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_admin);
+        bureaucrat_admin.executeForm(*form);
     }
     catch (std::exception &e)
     {
@@ -109,7 +109,7 @@ void testPresidentFormExecute(void)
         form->beSigned(bureaucrat_base);
         std::cout << *form;
         std::cout << bureaucrat_base.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_base);
+        bureaucrat_base.executeForm(*form);
     }
     catch (std::exception &e)
     {
@@ -122,7 +122,7 @@ void testPresidentFormExecute(void)
         form->beSigned(bureaucrat_admin);
         std::cout << *form;
         std::cout << bureaucrat_admin.getName() << " tries to execute " << form->getName() << std::endl;
-        form->execute(bureaucrat_admin);
+        bureaucrat_admin.executeForm(*form);
     }
     catch (std::exception &e)
     {
