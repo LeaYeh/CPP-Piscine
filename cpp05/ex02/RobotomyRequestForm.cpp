@@ -1,10 +1,10 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm(R_DEFAULT_FORM_NAME, R_SIGN_GRADE, R_EXEC_GRADE), _target(std::string("default")) {}
+RobotomyRequestForm::RobotomyRequestForm() : AForm(R_DEFAULT_FORM_NAME, R_DEFAULT_FORM_TARGET, R_SIGN_GRADE, R_EXEC_GRADE) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), _target(other._target) {}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &name, const std::string &target) : AForm(name, R_SIGN_GRADE, R_EXEC_GRADE), _target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string &name, const std::string &target) : AForm(name, target, R_SIGN_GRADE, R_EXEC_GRADE) {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {

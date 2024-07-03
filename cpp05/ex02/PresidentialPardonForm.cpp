@@ -1,10 +1,10 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm(P_DEFAULT_FORM_NAME, P_SIGN_GRADE, P_EXEC_GRADE), _target("default") {}
+PresidentialPardonForm::PresidentialPardonForm() : AForm(P_DEFAULT_FORM_NAME, P_DEFAULT_FORM_TARGET, P_SIGN_GRADE, P_EXEC_GRADE) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other), _target(other._target) {}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &name, const std::string &target) : AForm(name, P_SIGN_GRADE, P_EXEC_GRADE), _target(target) {}
+PresidentialPardonForm::PresidentialPardonForm(const std::string &name, const std::string &target) : AForm(name, target, P_SIGN_GRADE, P_EXEC_GRADE) {}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {

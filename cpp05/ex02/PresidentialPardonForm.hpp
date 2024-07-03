@@ -4,6 +4,7 @@
 #define P_SIGN_GRADE 25
 #define P_EXEC_GRADE 5
 #define P_DEFAULT_FORM_NAME "PresidentialPardonForm"
+#define P_DEFAULT_FORM_TARGET "Someone"
 
 class PresidentialPardonForm : public AForm
 {
@@ -15,8 +16,4 @@ public:
     ~PresidentialPardonForm(){};
 
     void handleExecutoion(void) const;
-
-protected:
-private:
-    const std::string _target;
 };

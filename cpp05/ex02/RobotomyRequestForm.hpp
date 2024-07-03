@@ -6,6 +6,7 @@
 #define R_SIGN_GRADE 72
 #define R_EXEC_GRADE 45
 #define R_DEFAULT_FORM_NAME "RobotomyRequestForm"
+#define R_DEFAULT_FORM_TARGET "Someone's home"
 
 class RobotomyRequestForm : public AForm
 {
@@ -17,8 +18,4 @@ public:
     ~RobotomyRequestForm(){};
 
     void handleExecutoion(void) const;
-
-protected:
-private:
-    const std::string _target;
 };
