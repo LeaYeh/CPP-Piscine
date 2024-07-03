@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdlib>
+#include <ctime>
 #include "AForm.hpp"
 
 #define R_SIGN_GRADE 72
