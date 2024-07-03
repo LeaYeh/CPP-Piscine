@@ -1,16 +1,21 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm(S_DEFAULT_FORM_NAME, S_DEFAULT_FORM_TARGET, S_SIGN_GRADE, S_EXEC_GRADE) {}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(S_DEFAULT_FORM_NAME, S_SIGN_GRADE, S_EXEC_GRADE), _target(std::string(DEFAULT_FORM_TARGET)) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name, const std::string &target) : AForm(name, target, S_SIGN_GRADE, S_EXEC_GRADE) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name, const std::string &target) : AForm(name, S_SIGN_GRADE, S_EXEC_GRADE), _target(target) {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
     if (this != &other)
         AForm::operator=(other);
     return (*this);
+}
+
+std::string ShrubberyCreationForm::getTarget(void) const
+{
+    return (this->_target);
 }
 
 void ShrubberyCreationForm::handleExecutoion(void) const

@@ -15,7 +15,7 @@ public:
     AForm();
     AForm(const AForm &other);
     // AForm(std::string const &name, std::string const &target);
-    AForm(std::string const &name, std::string const &target, const int sign_grade, const int exec_grade);
+    AForm(std::string const &name, const int sign_grade, const int exec_grade);
     AForm &operator=(const AForm &other);
     virtual ~AForm(){};
 
@@ -25,7 +25,7 @@ public:
     int getSignGrade(void) const;
     int getExecGrade(void) const;
     void execute(Bureaucrat const &executor) const;
-    virtual std::string getTarget(void) const;
+    virtual std::string getTarget(void) const = 0;
     virtual void handleExecutoion(void) const = 0;
 
     class GradeTooHighException : public std::exception
@@ -40,8 +40,6 @@ public:
     };
 
 protected:
-    const std::string _target;
-
 private:
     const std::string _name;
     bool _is_signed;

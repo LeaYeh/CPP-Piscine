@@ -16,6 +16,7 @@ public:
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
     ~ShrubberyCreationForm(){};
 
+    std::string getTarget(void) const;
     void handleExecutoion(void) const;
 
     class FileNotOpenException : public std::exception
@@ -23,4 +24,7 @@ public:
     public:
         const char *what() const throw();
     };
+
+private:
+    const std::string _target;
 };
