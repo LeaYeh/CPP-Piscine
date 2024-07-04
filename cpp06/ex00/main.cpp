@@ -7,7 +7,6 @@ int main(int argc, char **argv)
         std::cout << "Invalid input\n";
         return (1);
     }
-    ScalarConverter converter(argv[1]);
-    converter.run();
+    ScalarConverter::convert(argv[1]);
     return (0);
 }

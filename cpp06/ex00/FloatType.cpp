@@ -41,8 +41,9 @@ bool FloatType::_convert(void)
         this->_converted_result = "inf";
     else
     {
+        float tmp = static_cast<float>(std::strtod(this->_content.c_str(), NULL));
         std::stringstream ss;
-        ss << std::strtod(this->_content.c_str(), NULL);
+        ss << tmp;
         this->_converted_result = ss.str();
     }
     this->_converted_result = this->_getMinPrecision(this->_converted_result);

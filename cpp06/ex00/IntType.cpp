@@ -34,8 +34,9 @@ bool IntType::_convert(void)
         return (false);
     else
     {
+        int tmp = static_cast<int>(std::strtol(this->_content.c_str(), NULL, 10));
         std::stringstream ss;
-        ss << std::strtol(this->_content.c_str(), NULL, 10);
+        ss << tmp;
         this->_converted_result = ss.str();
     }
     return (true);

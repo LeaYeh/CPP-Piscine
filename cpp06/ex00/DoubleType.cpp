@@ -42,8 +42,9 @@ bool DoubleType::_convert(void)
         this->_converted_result = "inf";
     else
     {
+        double tmp = static_cast<double>(std::strtod(this->_content.c_str(), NULL));
         std::stringstream ss;
-        ss << std::strtod(this->_content.c_str(), NULL);
+        ss << tmp;
         this->_converted_result = ss.str();
     }
     this->_converted_result = this->_getMinPrecision(this->_converted_result);
