@@ -7,16 +7,13 @@
 class ScalarConverter
 {
 public:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter &other);
-    ScalarConverter(std::string const &type);
-    ScalarConverter &operator=(const ScalarConverter &other);
-    virtual ~ScalarConverter() {};
-
-    void run(void) const;
+    static void convert(const std::string &input);
 
 protected:
 private:
     static const int _MAX_TYPE_NUM = 4;
     std::string _input;
+
+    ScalarConverter();
+    ~ScalarConverter(){};
 };
