@@ -6,14 +6,15 @@
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 10:43:20 by lyeh              #+#    #+#              #
-#    Updated: 2024/06/09 15:52:35 by lyeh             ###   ########.fr        #
+#    Updated: 2024/07/04 20:39:42 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= program
 CXX			= c++
 CPP_FLAGS 	= -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC 		= $(wildcard *.cpp)
+SRC 		= main.cpp \
+			Serializer.cpp
 OBJ 		= $(patsubst %.cpp,%.o,$(SRC))
 
 all: $(NAME)
