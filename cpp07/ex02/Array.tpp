@@ -12,6 +12,8 @@ Array<T>::Array(const unsigned int &n)
     std::cout << "Array(n) constructor be called.\n";
     this->_size = n;
     this->_data = new T[n];
+    for (unsigned int i = 0; i < this->_size; i++)
+        this->_data[i] = 0;
 }
 
 template <typename T>
