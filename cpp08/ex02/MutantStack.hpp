@@ -15,8 +15,8 @@ public:
     MutantStack &operator=(const MutantStack &other);
     ~MutantStack(){};
 
-    iterator begin(void) { return (this->c.begin()); };
-    iterator end(void) { return (this->c.end()); };
+    iterator begin(void);
+    iterator end(void);
 
 protected:
 private:
