@@ -22,4 +22,6 @@ protected:
 private:
 };
 
+std::ostream &operator<<(std::ostream &os, const MutantStack<T, Container> &obj);
+
 #include "MutantStack.tpp"
