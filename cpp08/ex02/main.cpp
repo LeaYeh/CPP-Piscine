@@ -33,6 +33,31 @@ int main()
         mstack.push("haha");
         mstack.push("so funny");
         MutantStack<std::string>::iterator it = mstack.begin();
+        MutantStack<std::string>::iterator ite = mstack.end();
+        while (it != ite)
+        {
+            std::cout << *it << std::endl;
+            ++it;
+        }
+    }
+    {
+        std::cout << "Test const iterator:\n";
+        MutantStack<int> mstack;
+
+        mstack.push(5);
+        mstack.push(17);
+        mstack.push(3);
+
+        MutantStack<int>::const_iterator it = mstack.begin();
+        MutantStack<int>::const_iterator ite = mstack.end();
+
+        while (it != ite)
+        {
+            std::cout << *it << std::endl;
+            ++it;
+        }
+
+        std::cout << mstack << std::endl;
     }
     return (0);
 }
