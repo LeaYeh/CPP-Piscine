@@ -1,9 +1,36 @@
 #include "Array.hpp"
 
+class Awesome
+{
+  public:
+    Awesome(void) : _n(0) {}
+    Awesome( int n ) : _n( n ) {}
+    Awesome & operator= (Awesome const & a) { _n = a._n; return *this; }
+    bool operator==( Awesome const & rhs ) const { return (this->_n == rhs._n); }
+    bool operator!=( Awesome const & rhs ) const{ return (this->_n != rhs._n); }
+    bool operator>( Awesome const & rhs ) const { return (this->_n > rhs._n); }
+    bool operator<( Awesome const & rhs ) const { return (this->_n < rhs._n); }
+    bool operator>=( Awesome const & rhs ) const { return (this->_n >= rhs._n); }
+    bool operator<=( Awesome const & rhs ) const { return (this->_n <= rhs._n); }
+    int get_n() const { return _n; }
+  private:
+    int _n;
+};
+std::ostream & operator<<(std::ostream & o, const Awesome &a) { o << a.get_n(); return o; }
 
 int main(void)
 {
     {
+        std::cout << std::endl;
+        std::cout << "Complex object test" << std::endl;
+        Array<Awesome> array_awesome(5);
+
+        for (int i = 0; i < 5; i++)
+            array_awesome[i] = Awesome(i);
+        array_awesome.printElements();
+    }
+    {
+        std::cout << "Pure type tests" << std::endl;
         std::cout << std::endl;
         Array<int> array_int;
         Array<float> array_float;
@@ -64,6 +91,5 @@ int main(void)
             std::cerr << e.what() << '\n';
         }
     }
-
     return (0);
 }
