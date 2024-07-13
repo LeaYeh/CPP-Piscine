@@ -14,23 +14,17 @@ void printElement(T &value)
     std::cout << value << " ";
 }
 
-template <typename T, int N>
-int arraySize(T (&)[N])
-{
-    return N;
-}
-
-template <typename T, typename Function>
-void iter(T &array, int length, Function func)
-{
-    if (length > arraySize(array))
-        throw (std::range_error("Cannot iter out of array size."));
-    for (int i = 0; i < length; i++)
-        func(array[i]);
-}
-
 int main(void)
 {
+    {
+        std::cout << "Test iter() with const and non-const function\n";
+        int arr[] = {1, 2, 3, 4};
+
+        std::cout << "\nPrint out each element with non-const function\n";
+        iter(arr, 4, printElement<int>);
+        std::cout << "\nPrint out each element with const function\n";
+        iter(arr, 4, printElement<const int>);
+    }
     {
         int arr[] = {1, 2, 3, 4};
 
