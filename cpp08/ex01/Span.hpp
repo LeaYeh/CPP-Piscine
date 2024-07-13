@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
+#include <iterator>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 
 class Span
 {
@@ -17,6 +19,8 @@ public:
     unsigned int size(void) const;
     unsigned int capacity(void) const;
     void addNumber(const int &num);
+    template <typename Iterator>
+    void addNumbers(const Iterator begin, const Iterator end);
     int shortestSpan(void);
     int longestSpan(void);
 
@@ -30,3 +34,5 @@ private:
 };
 
 std::ostream &operator<<(std::ostream &os, const Span &obj);
+
+#include "Span.tpp"

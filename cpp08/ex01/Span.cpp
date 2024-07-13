@@ -62,40 +62,33 @@ void Span::addNumber(const int &num)
 
 int Span::shortestSpan(void)
 {
-    int dist = std::numeric_limits<int>::max();
-    int tmp_dist;
+    std::vector< std::pair<int, int> > indexed_arr;
+    int min_span = std::numeric_limits<int>::max();
 
     if (this->_size < 2)
         throw(std::runtime_error("No span can be found."));
-    for (unsigned int i = 0; i < this->_size - 1; i++)
+    for (unsigned int i = 0; i < this->_size; i++)
+        indexed_arr.push_back(std::make_pair(this->_data[i], i));
+    std::sort(indexed_arr.begin(), indexed_arr.end());
+    for (unsigned int i = 1; i < this->_size; i++)
     {
-        for (unsigned int j = i + 1; j < this->_size; j++)
-        {
-            tmp_dist = std::abs(this->_data[i] - this->_data[j]);
-            if (dist > tmp_dist)
-                dist = tmp_dist;
-        }
+        int span = std::abs(indexed_arr[i].first - indexed_arr[i - 1].first);
+        if (span < min_span)
+            min_span = span;
     }
-    return (dist);
+    return (min_span);
 }
 
 int Span::longestSpan(void)
 {
-    int dist = std::numeric_limits<int>::min();
-    int tmp_dist;
+    int min_elm;
+    int max_elm;
 
     if (this->_size < 2)
         throw(std::runtime_error("No span can be found."));
-    for (unsigned int i = 0; i < this->_size - 1; i++)
-    {
-        for (unsigned int j = i + 1; j < this->_size; j++)
-        {
-            tmp_dist = std::abs(this->_data[i] - this->_data[j]);
-            if (dist < tmp_dist)
-                dist = tmp_dist;
-        }
-    }
-    return (dist);
+    min_elm = *std::min_element(this->_data, this->_data + this->_size);
+    max_elm = *std::max_element(this->_data, this->_data + this->_size);
+    return (max_elm - min_elm);
 }
 
 void Span::_deepCopy(const Span &other)
