@@ -39,7 +39,7 @@ bool RPN::_isValidateInt(const std::string &token)
         std::stoi(token, &pos);
         if (pos != token.size())
         {
-            std::cout << "Invalid int" << std::endl;
+            std::cout << "Invalid integer" << std::endl;
             return (false);
         }
     }
