@@ -11,11 +11,7 @@ Array<T>::Array(const unsigned int &n)
 {
     std::cout << "Array(n) constructor be called.\n";
     this->_size = n;
-    this->_data = new T[n];
-    // the T() is a temp value of type T, which will be consider as a const varible during the compiler time.
-    // so if the T is an object, the copy operator's parameter should be a const reference.
-    for (unsigned int i = 0; i < this->_size; i++)
-        this->_data[i] = T();
+    this->_data = new T[n]();
 }
 
 template <typename T>

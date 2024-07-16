@@ -1,5 +1,28 @@
 #include "Array.hpp"
 
+/*
+1. We don't need to initialize the array element value iteraly, we can use the default constructor of the type.
+    - `this->_data = new T[n]();`
+2. In C++98 When the copy assignment operator argument is a non-const reference, it will be bind to rvalues.
+     But if the argument is a const reference, it will not bind to lvalues.
+    - For example,
+        ```cpp
+        Awesome & operator= (Awesome & a) { _n = a._n; return *this; } // This will not bind to lvalues.
+        Awesome & operator= (Awesome const & a) { _n = a._n; return *this; } // This will bind to lvalues.
+        ```
+    - So, we should use `const` keyword in the copy assignment operator.
+    - In C++11, we could use `&&` to bind to rvalues.
+        - For example,
+            ```cpp
+                Awesome & operator= (Awesome && a) { _n = a._n; return *this; } // This will bind to rvalues.
+            ```
+        - Other example,
+            ```cpp
+                bool operator==( Awesome const & rhs ) const & { return (this->_n == rhs._n); } // for lvalue
+                bool operator!=( Awesome const & rhs ) && { return (this->_n != rhs._n); } // only for rvalue
+            ```
+*/
+
 class Awesome
 {
   public:
