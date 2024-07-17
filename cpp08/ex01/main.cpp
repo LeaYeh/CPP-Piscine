@@ -1,4 +1,4 @@
-#include <ctime> // for time function
+#include <ctime>   // for time function
 #include <cstdlib> // for rand and srand functions
 #include "Span.hpp"
 
@@ -33,14 +33,14 @@ int main()
             std::cout << sp.shortestSpan() << std::endl;
             std::cout << sp.longestSpan() << std::endl;
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             std::cerr << e.what() << '\n';
         }
         std::cout << std::endl;
     }
     {
-        std::cout << "Test copy operator:\n";
+        std::cout << "Test copy operator (bigger = smaller):\n";
         Span sp1 = Span(10);
         Span sp2 = Span(5);
 
@@ -52,6 +52,7 @@ int main()
         std::cout << sp1;
         std::cout << sp2;
         sp1 = sp2;
+        sp1[0] = 100;
         std::cout << "After...\n";
         std::cout << sp1;
         std::cout << sp2;
@@ -79,7 +80,7 @@ int main()
             std::cout << "Test exception 1:\n";
             Span sp = Span(0);
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             std::cerr << e.what() << '\n';
         }
@@ -93,7 +94,7 @@ int main()
 
             std::cout << sp.shortestSpan() << std::endl;
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             std::cerr << e.what() << '\n';
         }
@@ -108,7 +109,7 @@ int main()
 
             sp1 = sp2;
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             std::cerr << e.what() << '\n';
         }

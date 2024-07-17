@@ -1,5 +1,7 @@
 #include "Span.hpp"
 
+Span::Span() : _capacity(0), _size(0), _data(NULL) {}
+
 Span::Span(unsigned int N) : _capacity(N), _size(0)
 {
     if (N < 1)

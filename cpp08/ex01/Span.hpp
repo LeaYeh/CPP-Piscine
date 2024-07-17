@@ -9,6 +9,7 @@
 class Span
 {
 public:
+    Span();
     Span(unsigned int N);
     Span(const Span &other);
     Span &operator=(const Span &other);
@@ -20,10 +21,17 @@ public:
     unsigned int size(void) const;
     unsigned int capacity(void) const;
     void addNumber(const int &num);
-    template <typename Iterator>
-    void addNumbers(const Iterator begin, const Iterator end);
     int shortestSpan(void);
     int longestSpan(void);
+
+    template <typename Iterator>
+    void addNumbers(const Iterator begin, const Iterator end)
+    {
+        if (this->_size + std::distance(begin, end) > this->_capacity)
+            throw(std::length_error("Not enough capacity."));
+        for (Iterator it = begin; it != end; it++)
+            this->_data[this->_size++] = *it;
+    }
 
 protected:
 private:
@@ -35,5 +43,3 @@ private:
 };
 
 std::ostream &operator<<(std::ostream &os, const Span &obj);
-
-#include "Span.tpp"
