@@ -1,5 +1,3 @@
-#include "easyfind.hpp"
-
 template <typename T>
 void easyfind(const T &container, int target)
 {
