@@ -1,4 +1,5 @@
-#include <random>
+#include <ctime> // for time function
+#include <cstdlib> // for rand and srand functions
 #include "Span.hpp"
 
 int main()
@@ -16,15 +17,16 @@ int main()
         std::cout << sp2;
     }
     {
-        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-        std::default_random_engine engine(seed);
+        unsigned seed = time(0);
+        srand(seed);
+
         std::cout << "Test with large size of array:\n";
         Span sp = Span(1000000);
         std::vector<int> vec;
 
         for (int i = 0; i < 1000000; i++)
             vec.push_back(i);
-        std::shuffle(vec.begin(), vec.end(), engine);
+        std::random_shuffle(vec.begin(), vec.end());
         try
         {
             sp.addNumbers(vec.begin(), vec.end());

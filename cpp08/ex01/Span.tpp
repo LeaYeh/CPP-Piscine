@@ -1,5 +1,3 @@
-#include "Span.hpp"
-
 template <typename Iterator>
 void Span::addNumbers(const Iterator begin, const Iterator end)
 {

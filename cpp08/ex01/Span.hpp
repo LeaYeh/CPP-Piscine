@@ -3,6 +3,7 @@
 #include <iterator>
 #include <cmath>
 #include <limits>
+#include <vector>
 #include <algorithm>
 
 class Span
