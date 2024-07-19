@@ -1,18 +1,15 @@
-#include <iostream>
-#include <iterator>
 #include "iter.hpp"
 
-template <typename T>
-void printElementWithNewLine(T &value)
-{
-    std::cout << value << std::endl;
-}
-
-template <typename T>
-void printElement(T &value)
-{
-    std::cout << value << " ";
-}
+/*
+1. The tpp file will be included in the header file, we can consider the tpp file is the extension of the header file
+    - But the tpp file is not so common, for the simplicity, we can put the implementation of the function template in the header file
+2. During the compilation, the compiler will know the declaration of the variable,
+    it will replace the content of the function template with the actual type, like the following example: `arraySize<int, 5>(array)`
+    ```
+        template <typename T, int N>
+        int arraySize(T (&)[N]);
+    ```
+*/
 
 int main(void)
 {
