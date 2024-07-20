@@ -8,12 +8,12 @@ public:
     JacobsthalGenerator &operator=(const JacobsthalGenerator &other);
     ~JacobsthalGenerator();
 
-    int next(void);
+    unsigned long next(void);
     void reset(void);
 
 protected:
 private:
-    int _n;
-    int _j0;
-    int _j1;
+    unsigned long _n;
+    unsigned long _j0;
+    unsigned long _j1;
 };

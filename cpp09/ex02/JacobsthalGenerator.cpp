@@ -22,9 +22,9 @@ J(0) = 0
 J(1) = 1
 J(n) = J(n - 1) + 2 * J(n - 2)
 */
-int JacobsthalGenerator::next(void)
+unsigned long JacobsthalGenerator::next(void)
 {
-    int j_next;
+    unsigned long j_next;
 
     if (this->_n == 0)
         j_next = this->_j0;
