@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <list>
 
 int main(int argc, char* argv[])
 {
@@ -7,7 +8,6 @@ int main(int argc, char* argv[])
         std::cerr << "Usage: " << argv[0] << " <integers>" << std::endl;
         return (1);
     }
-
     std::string input = "";
 
     for (int i = 1; i < argc; i++)
@@ -16,7 +16,9 @@ int main(int argc, char* argv[])
         if (i < argc - 1)
             input += " ";
     }
-    PmergeMe<std::list<int> > pmm;
+    PmergeMe<std::list<int> > pmm(input);
+
+    pmm.sort();
 
     return (0);
 }

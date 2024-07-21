@@ -1,5 +1,3 @@
-#include "PmergeMe.hpp"
-
 template <typename Container>
 PmergeMe<Container, false>::PmergeMe()
 {
@@ -14,28 +12,24 @@ PmergeMe<Container, false>::PmergeMe(const std::string &input)
 }
 
 template <typename Container>
-PmergeMe<Container, true>::PmergeMe() : _compare_cnt(0), _swap_cnt(0) {}
+PmergeMe<Container, true>::PmergeMe() {}
 
 template <typename Container>
-PmergeMe<Container, true>::PmergeMe(const std::string &input) : _compare_cnt(0), _swap_cnt(0)
+PmergeMe<Container, true>::PmergeMe(const std::string &input)
 {
     if (!this->_parseInput(input))
         return ;
-    this->printElements(this->_inputNumbers);
+    this->sort();
 }
 
 template <typename Container>
-PmergeMe<Container, true>::PmergeMe(const PmergeMe &other) : _inputNumbers(other._inputNumbers), _compare_cnt(other._compare_cnt), _swap_cnt(other._swap_cnt) {}
+PmergeMe<Container, true>::PmergeMe(const PmergeMe &other) : _inputNumbers(other._inputNumbers) {}
 
 template <typename Container>
 PmergeMe<Container, true> &PmergeMe<Container, true>::operator=(const PmergeMe &other)
 {
     if (this != &other)
-    {
         this->_inputNumbers = other._inputNumbers;
-        this->_compare_cnt = other._compare_cnt;
-        this->_swap_cnt = other._swap_cnt;
-    }
     return (*this);
 }
 
@@ -54,19 +48,19 @@ bool PmergeMe<Container, true>::_isValidateInt(const std::string &token)
         tmp = std::strtol(token.c_str(), &end, 10);
         if (*end != '\0')
         {
-            std::cout << "Invalid integer: " << token << std::endl;
+            std::cerr << "Invalid integer: " << token << std::endl;
             return (false);
         }
         else if (tmp < std::numeric_limits<int>::min() || tmp > std::numeric_limits<int>::max())
         {
-            std::cout << "Invalid integer: " << token << std::endl;
+            std::cerr << "Invalid integer: " << token << std::endl;
             return (false);
         }
     }
     catch(const std::exception& e)
     {
-        std::cout << "Invalid integer: " << token << std::endl;
-        std::cout << e.what() << std::endl;
+        std::cerr << "Invalid integer: " << token << std::endl;
+        std::cerr << e.what() << std::endl;
         return (false);
     }
     return (true);
@@ -90,7 +84,7 @@ bool PmergeMe<Container, true>::_parseInput(const std::string &input)
 }
 
 template <typename Container>
-void PmergeMe<Container, true>::printElements(const Container &container) const
+void PmergeMe<Container, true>::_printElements(const Container &container) const
 {
     typename Container::const_iterator it = container.begin();
 
@@ -110,4 +104,9 @@ void PmergeMe<Container, true>::printElements(const Container &container) const
 template <typename Container>
 void PmergeMe<Container, true>::sort(void)
 {
+    FordJohnsonSort<Container> fjs(this->_inputNumbers);
+
+    fjs.sort();
+    std::cout << "Comparisons: " << fjs.getCompareCount() << std::endl;
+    this->_printElements(fjs.getNumbers());
 }

@@ -8,6 +8,7 @@
 #include <deque>
 #include <list>
 #include <string>
+#include "FordJohnsonSort.hpp"
 
 template <typename T>
 struct is_supported_container
@@ -36,10 +37,12 @@ struct is_supported_container<std::deque<int> >
     };
 };
 
+
 template <typename Container, bool IsSupported = is_supported_container<Container>::value>
 class PmergeMe;
 
 // Primary template for unsupported types
+// Container = std::vector<int>
 template <typename Container>
 class PmergeMe<Container, false>
 {
@@ -47,6 +50,7 @@ class PmergeMe<Container, false>
 public:
     PmergeMe();
     PmergeMe(const std::string &input);
+    void sort(void) {};
 };
 
 // Specialization for supported types
@@ -54,27 +58,21 @@ template <typename Container>
 class PmergeMe<Container, true>
 {
 public:
-    typedef std::pair<int, int> Pair;
-
+    // typedef std::pair<int, int> Pair;
     PmergeMe();
     PmergeMe(const std::string &input);
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
-    void printElements(const Container &container) const;
     void sort(void);
 
 private:
     Container _inputNumbers;
-    int _compare_cnt;
-    int _swap_cnt;
 
     bool _isValidateInt(const std::string &token);
     bool _parseInput(const std::string &input);
-    void _printSortingResult(void) const;
-    void _initPair(void);
-    bool _isLarger(const int &a, const int &b) const;
+    void _printElements(const Container &container) const;
 };
 
 #include "PmergeMe.tpp"
