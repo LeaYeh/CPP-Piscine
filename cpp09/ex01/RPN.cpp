@@ -33,19 +33,14 @@ bool RPN::_isValidateInput(const std::string &input)
 
 bool RPN::_isValidateInt(const std::string &token)
 {
-    try
+    std::istringstream iss(token);
+    int value;
+    char leftover;
+
+    if (!(iss >> value) || iss.get(leftover))
     {
-        std::size_t pos;
-        std::stoi(token, &pos);
-        if (pos != token.size())
-        {
-            std::cout << "Invalid integer" << std::endl;
-            return (false);
-        }
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << e.what() << std::endl;
+        std::cout << "Invalid int: " << token << std::endl;
+        this->_emptyStack();
         return (false);
     }
     return (true);
@@ -76,6 +71,15 @@ bool RPN::_isOperator(const std::string &token)
     if (token == "+" || token == "-" || token == "*" || token == "/")
         return (true);
     return (false);
+}
+
+int RPN::_convertToInt(const std::string &token) const
+{
+    int value;
+
+    std::istringstream converter(token);
+    converter >> value;
+    return (value);
 }
 
 void RPN::_emptyStack(void)
@@ -115,7 +119,7 @@ bool RPN::_process(const std::string &input)
                 this->_stack.push(b / a);
         }
         else
-            this->_stack.push(std::stoi(token));
+            this->_stack.push(this->_convertToInt(token));
     }
     return (true);
 }

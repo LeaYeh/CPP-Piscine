@@ -15,6 +15,7 @@ public:
 
 private:
     std::stack<int> _stack;
+    int _convertToInt(const std::string &token) const;
     bool _process(const std::string &input);
     bool _isValidateInt(const std::string &token);
     bool _isValidateCalculation(const int &a, const std::string &op);
