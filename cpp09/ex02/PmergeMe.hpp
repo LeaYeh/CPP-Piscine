@@ -1,13 +1,11 @@
 #pragma once
 #include <iostream>
 #include <limits>
-#include <algorithm>
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
 #include <vector>
 #include <deque>
-#include <list>
 #include <string>
 #include "FordJohnsonSort.hpp"
 

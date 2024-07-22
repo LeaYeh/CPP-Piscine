@@ -1,4 +1,3 @@
-#include <cstddef>
 template <typename Container>
 PmergeMe<Container, false>::PmergeMe()
 {

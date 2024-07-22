@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <deque>
-#include <queue>
 
 template <typename Container>
 struct TypeTraits
