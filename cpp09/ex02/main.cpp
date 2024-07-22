@@ -16,9 +16,21 @@ int main(int argc, char* argv[])
         if (i < argc - 1)
             input += " ";
     }
-    PmergeMe<std::list<int> > pmm(input);
+    try
+    {
+        PmergeMe<std::vector<int> > pmm_vector(input);
+        PmergeMe<std::deque<int> > pmm_deque(input);
 
-    pmm.sort();
+        pmm_vector.sort();
+        pmm_deque.sort();
+
+        pmm_vector.printSortedResult();
+        pmm_vector.printTaskInfo();
+        pmm_deque.printTaskInfo();
+    } catch (std::exception &e)
+    {
+        return (1);
+    }
 
     return (0);
 }

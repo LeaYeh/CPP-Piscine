@@ -1,14 +1,14 @@
 template <typename Container>
 FordJohnsonSort<Container>::FordJohnsonSort()
-    : _numbers(Container()), _sortedNumbers(Container()), _level(0), _compareCount(0) {}
+    : _numbers(Container()), _sortedNumbers(Container()), _level(0), _compareCount(0), _timeElapsed(0) {}
 
 template <typename Container>
 FordJohnsonSort<Container>::FordJohnsonSort(Container &numbers)
-    : _numbers(numbers), _sortedNumbers(Container()), _level(0), _compareCount(0) {}
+    : _numbers(numbers), _sortedNumbers(Container()), _level(0), _compareCount(0), _timeElapsed(0) {}
 
 template <typename Container>
 FordJohnsonSort<Container>::FordJohnsonSort(const FordJohnsonSort &other)
-    : _numbers(other.getNumbers()), _sortedNumbers(Container()), _level(0), _compareCount(other.getCompareCount()) {}
+    : _numbers(other.getNumbers()), _sortedNumbers(Container()), _level(0), _compareCount(other.getCompareCount()), _timeElapsed(other.getTimeElapsed) {}
 
 template <typename Container>
 FordJohnsonSort<Container> &FordJohnsonSort<Container>::operator=(const FordJohnsonSort &other)
@@ -19,6 +19,7 @@ FordJohnsonSort<Container> &FordJohnsonSort<Container>::operator=(const FordJohn
         this->_sortedNumbers = other.getSortedNumbers();
         this->_level = other.getLevel();
         this->_compareCount = other.getCompareCount();
+        this->_timeElapsed = other.getTimeElapsed();
     }
     return (*this);
 }
@@ -55,6 +56,12 @@ Container FordJohnsonSort<Container>::getSortedNumbers(void) const
 }
 
 template <typename Container>
+double FordJohnsonSort<Container>::getTimeElapsed(void) const
+{
+    return (this->_timeElapsed);
+}
+
+template <typename Container>
 void FordJohnsonSort<Container>::setNumbers(Container &numbers)
 {
     this->_numbers = numbers;
@@ -76,7 +83,10 @@ void FordJohnsonSort<Container>::sort(void)
         ContainerPair siloPair(single);
         pairs.push_back(siloPair);
     }
+    std::clock_t start = std::clock();
     this->_recursiveSort(pairs);
+    std::clock_t end = std::clock();
+    this->_timeElapsed = (end - start) / (double)CLOCKS_PER_SEC;
 }
 
 // remainderPairs = ContainerPairContainer = std::vector<Pair<std::vector<int> > >
@@ -91,9 +101,10 @@ typename FordJohnsonSort<Container>::ContainerPairContainer FordJohnsonSort<Cont
     this->_level++;
     lowerLevelRemainderPairs = this->_recursiveSort(pairs);
     this->_level--;
-    this->_insertion(pairs, lowerLevelRemainderPairs);
     if (this->_level == 0)
         this->_insertion(pairs, currentLevelRemainderPairs);
+    else
+        this->_insertion(pairs, lowerLevelRemainderPairs);
     return (currentLevelRemainderPairs);
 }
 
@@ -116,20 +127,25 @@ bool FordJohnsonSort<Container>::_pairwise(
     for (i = 0; i <= numbers.size() - (levelElementSize * 2); i += levelElementSize * 2)
     {
         ContainerPairContainer tmpPairs;
-        this->_setupPairElement(tmpPairs, numbers, i, levelElementSize);
+        this->_setupPairElement(tmpPairs, numbers, i, levelElementSize, true);
         pairs.insert(pairs.end(), tmpPairs.begin(), tmpPairs.end());
     }
     for (unsigned long j = i; j < numbers.size(); j += lowerLevelElementSize * 2)
     {
         ContainerPairContainer tmpPairs;
-        this->_setupPairElement(tmpPairs, numbers, j, lowerLevelElementSize);
+        this->_setupPairElement(tmpPairs, numbers, j, lowerLevelElementSize, false);
         currentLevelRemainderPairs.insert(currentLevelRemainderPairs.end(), tmpPairs.begin(), tmpPairs.end());
     }
     return (true);
 }
 
 template <typename Container>
-void FordJohnsonSort<Container>::_setupPairElement(ContainerPairContainer &pairs, Container &numbers, int index, int elementSize)
+void FordJohnsonSort<Container>::_setupPairElement(
+    ContainerPairContainer &pairs,
+    Container &numbers,
+    int index,
+    int elementSize,
+    bool needToCompare)
 {
     if ((unsigned long)(index + elementSize) > numbers.size())
         throw std::runtime_error("Not enough elements to setup pair, at least 1 silo elements is required");
@@ -139,9 +155,12 @@ void FordJohnsonSort<Container>::_setupPairElement(ContainerPairContainer &pairs
         Container right = Container(numbers.begin() + index + elementSize, numbers.begin() + index + elementSize * 2);
         Pair<Container> pair(left, right);
 
-        this->_compareCount++;
-        if (pair.getUpperBound() < pair.getLowerBound())
-            pair.swap();
+        if (needToCompare)
+        {
+            this->_compareCount++;
+            if (pair.getUpperBound() < pair.getLowerBound())
+                pair.swap();
+        }
         pairs.push_back(pair);
     }
     else
@@ -157,27 +176,62 @@ void FordJohnsonSort<Container>::_insertion(ContainerPairContainer &unsortedPair
 {
     const int lowerLevelElementSize = std::pow(2, this->_level - 1);
     JacobsthalGenerator jacobSeq;
-    ContainerPairContainer sortedPairs;
     unsigned long jb;
-    unsigned long jb_prev = 1;
+    unsigned long jb_prev = 0;
 
     this->_mergePairs(unsortedPairs, remainderPairs);
     this->_reshapePairs(unsortedPairs, lowerLevelElementSize);
-    sortedPairs.insert(sortedPairs.end(), unsortedPairs.begin(), unsortedPairs.begin() + 2);
-    for (unsigned long i = 2; i < unsortedPairs.size();)
+
+    ContainerPairContainer mainChain;
+    ContainerPairContainer subChain;
+    this->_splitToChain(unsortedPairs, mainChain, subChain);
+    mainChain.insert(mainChain.begin(), subChain[0]);
+    for (unsigned long i = 1; i < subChain.size();)
     {
         jb = jacobSeq.next();
-        for (unsigned long k = std::min(jb, unsortedPairs.size() - 1); k > jb_prev; k--)
+        for (unsigned long k = std::min(jb, subChain.size() - 1); k > jb_prev; k--)
         {
-            this->_binarySort(sortedPairs, unsortedPairs[k]);
+            this->_binarySort(mainChain, subChain[k]);
             i++;
         }
         jb_prev = jb;
     }
     if (this->_level == 0)
-        this->_numbers = this->_convertToNumbers(sortedPairs);
+        this->_sortedNumbers = this->_convertToNumbers(mainChain);
     else
-        unsortedPairs = sortedPairs;
+        unsortedPairs = mainChain;
+    // sortedPairs.insert(sortedPairs.end(), unsortedPairs.begin(), unsortedPairs.begin() + 2);
+    // for (unsigned long i = 2; i < unsortedPairs.size();)
+    // {
+    //     jb = jacobSeq.next();
+    //     for (unsigned long k = std::min(jb, unsortedPairs.size() - 1); k > jb_prev; k--)
+    //     {
+    //         this->_binarySort(sortedPairs, unsortedPairs[k]);
+    //         i++;
+    //     }
+    //     jb_prev = jb;
+    // }
+    // if (this->_level == 0)
+    //     this->_numbers = this->_convertToNumbers(sortedPairs);
+    // else
+    //     unsortedPairs = sortedPairs;
+}
+
+template <typename Container>
+void FordJohnsonSort<Container>::_splitToChain(
+    ContainerPairContainer &pairs,
+    ContainerPairContainer &mainChain,
+    ContainerPairContainer &subChain)
+{
+    if (pairs.size() == 0)
+        throw std::runtime_error("Pairs is empty and can not be split");
+    for (unsigned long i = 0; i < pairs.size(); i++)
+    {
+        if (i % 2 == 1)
+            mainChain.push_back(pairs[i]);
+        else
+            subChain.push_back(pairs[i]);
+    }
 }
 
 template <typename Container>
@@ -252,8 +306,13 @@ void FordJohnsonSort<Container>::_binarySort(ContainerPairContainer &container, 
         this->_compareCount++;
         if (target.getUpperBound() < container[mid].getUpperBound())
             high = mid - 1;
-        else
+        else if (target.getUpperBound() > container[mid].getUpperBound())
             low = mid + 1;
+        else
+        {
+            low = mid;
+            break ;
+        }
     }
     container.insert(container.begin() + low, target);
 }

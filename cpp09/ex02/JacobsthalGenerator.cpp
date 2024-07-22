@@ -1,6 +1,6 @@
 #include "JacobsthalGenerator.hpp"
 
-JacobsthalGenerator::JacobsthalGenerator() : _n(3), _j0(1), _j1(1) {}
+JacobsthalGenerator::JacobsthalGenerator() : _n(2), _j0(0), _j1(1) {}
 
 JacobsthalGenerator::JacobsthalGenerator(const JacobsthalGenerator &other) : _n(other._n), _j0(other._j0), _j1(other._j1) {}
 
@@ -38,7 +38,7 @@ unsigned long JacobsthalGenerator::next(void)
 
 void JacobsthalGenerator::reset(void)
 {
-    this->_n = 3;
-    this->_j0 = 1;
+    this->_n = 2;
+    this->_j0 = 0;
     this->_j1 = 1;
 }

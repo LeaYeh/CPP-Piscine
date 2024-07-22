@@ -1,5 +1,9 @@
 #pragma once
 #include <cmath>
+#include <ctime>
+#include <typeinfo> // Required for typeid
+#include <cxxabi.h>
+#include <memory>
 #include "Pair.hpp"
 #include "JacobsthalGenerator.hpp"
 #include "TypeTraits.hpp"
@@ -23,6 +27,7 @@ public:
     int getLevel(void) const;
     Container getNumbers(void) const;
     Container getSortedNumbers(void) const;
+    double getTimeElapsed(void) const;
     void setNumbers(Container &numbers);
     void sort(void);
 
@@ -32,10 +37,12 @@ private:
     Container _sortedNumbers;
     int _level;
     int _compareCount;
+    double _timeElapsed;
 
     ContainerPairContainer _recursiveSort(ContainerPairContainer &pairs);
     bool _pairwise(ContainerPairContainer &pairs, ContainerPairContainer &currentLevelRemainderPairs);
-    void _setupPairElement(ContainerPairContainer &pairs, Container &numbers, int index, int elementSize);
+    void _splitToChain(ContainerPairContainer &pairs, ContainerPairContainer &mainChain, ContainerPairContainer &subChain);
+    void _setupPairElement(ContainerPairContainer &pairs, Container &numbers, int index, int elementSize, bool needToCompare);
     void _insertion(ContainerPairContainer &pairs, ContainerPairContainer &remainderPairs);
     void _binarySort(ContainerPairContainer &container, ContainerPair target);
     void _reshapePairs(ContainerPairContainer &pairs, int elementSize) const;
