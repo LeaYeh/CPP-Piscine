@@ -6,14 +6,14 @@
 #    By: lyeh <lyeh@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/01 10:43:20 by lyeh              #+#    #+#              #
-#    Updated: 2024/07/13 19:44:54 by lyeh             ###   ########.fr        #
+#    Updated: 2024/07/23 21:35:07 by lyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= btc
 CXX			= c++
 CPP_FLAGS 	= -Wall -Wextra -Werror -MP -MD -std=c++98 -pedantic -g
-SRC 		= main.cpp
+SRC 		= main.cpp BitcoinExchange.cpp checker.cpp Database.cpp
 OBJ 		= $(patsubst %.cpp,%.o,$(SRC))
 DEP			= $(patsubst %.cpp,%.d,$(SRC))
 
