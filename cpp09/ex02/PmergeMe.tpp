@@ -142,7 +142,7 @@ std::string PmergeMe<Container, true>::_getFormattedTaskInfo(const FordJohnsonSo
     std::ostringstream oss;
 
     oss << std::right << "Time to process a range of " << std::setw(4) << fjs.getNumbers().size() << " elements ";
-    oss << "with " << std::right << std::setw(16) << this->_getFormattedContainerType(Container()) << ": ";
+    oss << "with " << std::right << std::setw(16) << this->_getFormattedContainerType(Container()) << " : ";
     oss << std::right << std::setw(7) << this->_roundToDecimalPlaces(fjs.getTimeElapsed(), 5) << "us" << std::endl;
     // oss << "Comparisons: " << fjs.getCompareCount() << std::endl;
     return (oss.str());
