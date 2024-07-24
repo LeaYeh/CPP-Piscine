@@ -39,7 +39,7 @@ bool RPN::_isValidateInt(const std::string &token)
 
     if (!(iss >> value) || iss.get(leftover))
     {
-        std::cout << "Invalid int: " << token << std::endl;
+        std::cout << "Error\n";
         this->_emptyStack();
         return (false);
     }
