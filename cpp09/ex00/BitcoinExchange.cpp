@@ -2,7 +2,7 @@
 #include "checker.hpp"
 
 
-const std::string BitcoinExchange::DATABASE_FILE = "/home/lyeh/project/curriculum/CPP-Piscine/cpp09/ex00/data.csv";
+const std::string BitcoinExchange::DATABASE_FILE = "data.csv";
 
 BitcoinExchange::BitcoinExchange() : _filePath("")
 {

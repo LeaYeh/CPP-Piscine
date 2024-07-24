@@ -27,8 +27,10 @@ Database::~Database()
 
 void Database::update(const std::string &filePath)
 {
-    if (!this->_parseInputFile(filePath) || this->_records.empty())
+    if (!this->_parseInputFile(filePath))
         throw std::exception();
+    if (this->_records.empty())
+        throw std::runtime_error("Error: no records found.\n");
 }
 
 double Database::getExchangeRate(const std::string &dateString) const

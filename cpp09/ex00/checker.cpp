@@ -82,9 +82,6 @@ bool isValidDay(const std::string &monthString, const std::string &dayString)
     {
         if (month == 2 && day == 29 && _isLeapYear(_getCurrentYear()))
             return (true);
-        std::cout << "DaysLookupTable[month]: " << DaysLookupTable[month] << std::endl;
-        std::cout << "month: " << month << std::endl;
-        std::cout << "day: " << day << std::endl;
         return (false);
     }
     return (true);
@@ -94,6 +91,8 @@ bool isValidFloat(const std::string &floatString)
 {
     size_t i = 0;
 
+    if (floatString.empty())
+        return (false);
     if (floatString[i] == '-' || floatString[i] == '+')
         i++;
     for (; i < floatString.length(); i++)
@@ -102,9 +101,10 @@ bool isValidFloat(const std::string &floatString)
             return (false);
     }
     size_t pos = floatString.find_first_of(".");
+    size_t pos2 = floatString.find_first_of(".", pos + 1);
     if (pos == std::string::npos)
         return (true);
-    if (pos == 0 || pos == floatString.length() - 1)
+    if (pos == floatString.length() - 1 || pos2 != std::string::npos)
         return (false);
     return (true);
 }
