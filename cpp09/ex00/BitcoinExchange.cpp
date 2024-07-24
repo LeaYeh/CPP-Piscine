@@ -78,7 +78,7 @@ bool BitcoinExchange::_parseInputLine(
 
     dateString = line.substr(0, pos);
     reason = "";
-    if (pos == std::string::npos)
+    if (pos == std::string::npos || valueString.empty() || dateString.empty())
         reason = "Error: bad input => " + line;
     else if (!isValidDate(dateString))
         reason = "Error: bad input => " + dateString;
