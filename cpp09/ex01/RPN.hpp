@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <stack>
+#include <list>
 
 class RPN
 {
@@ -14,7 +15,7 @@ public:
     void calculate(const std::string &input);
 
 private:
-    std::stack<int> _stack;
+    std::stack<int, std::list<int> > _stack;
     int _convertToInt(const std::string &token) const;
     bool _process(const std::string &input);
     bool _isValidateInt(const std::string &token);
