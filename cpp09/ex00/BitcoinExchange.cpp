@@ -63,6 +63,7 @@ void BitcoinExchange::_calculate(const std::string &dateString, double value)
     double exchange = this->_database.getExchangeRate(dateString);
     double bitcoin = value * exchange;
 
+    std::cout << std::fixed << std::setprecision(2);
     std::cout << dateString << " => " << value << " = " << bitcoin << std::endl;
 }
 
