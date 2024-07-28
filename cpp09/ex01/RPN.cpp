@@ -1,23 +1,5 @@
 #include "RPN.hpp"
 
-RPN::RPN() {}
-
-RPN::RPN(const RPN &other)
-{
-    (void)other;
-}
-
-RPN &RPN::operator=(const RPN &other)
-{
-    (void)other;
-    return *this;
-}
-
-RPN::~RPN()
-{
-    this->_emptyStack();
-}
-
 bool RPN::_isValidateInput(const std::string &input)
 {
     std::istringstream iss(input);
@@ -39,8 +21,7 @@ bool RPN::_isValidateInt(const std::string &token)
 
     if (!(iss >> value) || iss.get(leftover))
     {
-        std::cout << "Error\n";
-        this->_emptyStack();
+        std::cerr << "Error\n";
         return (false);
     }
     return (true);
@@ -55,14 +36,42 @@ bool RPN::_isValidateToken(const std::string &token)
     return (true);
 }
 
-bool RPN::_isValidateCalculation(const int &a, const std::string &op)
+bool RPN::_isValidateCalculation(const int a, const int b, const std::string &op, int &result)
 {
     if (op == "/" && a == 0)
     {
-        std::cout << "Division by zero is invalid" << std::endl;
-        this->_emptyStack();
+        std::cerr << "Error: Division by zero is invalid" << std::endl;
         return (false);
     }
+    if (op == "+")
+    {
+        result = b + a;
+        if ((a > 0 && b > 0 && result < 0) || (a < 0 && b < 0 && result > 0))
+        {
+            std::cerr << "Error: Overflow detected" << std::endl;
+            return (false);
+        }
+    }
+    else if (op == "-")
+    {
+        result = b - a;
+        if ((a > 0 && b < 0 && result > 0) || (a < 0 && b > 0 && result < 0))
+        {
+            std::cerr << "Error: Overflow detected" << std::endl;
+            return (false);
+        }
+    }
+    else if (op == "*")
+    {
+        result = b * a;
+        if (a != 0 && result / a != b)
+        {
+            std::cerr << "Error: Overflow detected" << std::endl;
+            return (false);
+        }
+    }
+    else if (op == "/")
+        result = b / a;
     return (true);
 }
 
@@ -82,12 +91,6 @@ int RPN::_convertToInt(const std::string &token) const
     return (value);
 }
 
-void RPN::_emptyStack(void)
-{
-    while (!this->_stack.empty())
-        this->_stack.pop();
-}
-
 bool RPN::_process(const std::string &input)
 {
     std::istringstream iss(input);
@@ -99,24 +102,17 @@ bool RPN::_process(const std::string &input)
         {
             if (this->_stack.size() < 2)
             {
-                std::cout << "Invalid input sequence cannot calculate." << std::endl;
-                this->_emptyStack();
+                std::cerr << "Error: Invalid input sequence cannot calculate." << std::endl;
                 return (false);
             }
             int a = this->_stack.top();
             this->_stack.pop();
             int b = this->_stack.top();
             this->_stack.pop();
-            if (!this->_isValidateCalculation(a, token))
+            int result;
+            if (!this->_isValidateCalculation(a, b, token, result))
                 return (false);
-            if (token == "+")
-                this->_stack.push(b + a);
-            else if (token == "-")
-                this->_stack.push(b - a);
-            else if (token == "*")
-                this->_stack.push(b * a);
-            else if (token == "/")
-                this->_stack.push(b / a);
+            this->_stack.push(result);
         }
         else
             this->_stack.push(this->_convertToInt(token));
@@ -130,8 +126,7 @@ void RPN::calculate(const std::string &input)
         return;
     if (this->_stack.size() != 1)
     {
-        std::cout << "Invalid input sequence cannot calculate." << std::endl;
-        this->_emptyStack();
+        std::cerr << "Error: Invalid input sequence cannot calculate." << std::endl;
         return;
     }
     std::cout << this->_stack.top() << std::endl;
