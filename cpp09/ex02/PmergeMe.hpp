@@ -63,7 +63,7 @@ public:
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
-    void sort(void);
+    bool sort(void);
     void printSortedResult(void) const;
     void printTaskInfo(void) const;
 
@@ -79,6 +79,7 @@ private:
     std::string _simplifyContainerType(const std::string &containerType) const;
     std::string _getFormattedNumbers(const Container &container) const;
     std::string _getFormattedTaskInfo(const FordJohnsonSort<Container> &fjs) const;
+    bool _isSorted(const Container &container) const;
 };
 
 #include "PmergeMe.tpp"

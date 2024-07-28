@@ -22,7 +22,7 @@ J(0) = 0
 J(1) = 1
 J(n) = J(n - 1) + 2 * J(n - 2)
 0 1 1 3 5 11 21
-only need: 3 5 11 21 ...
+only need: 1 3 5 11 21 ...
 */
 unsigned long JacobsthalGenerator::next(void)
 {

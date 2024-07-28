@@ -21,7 +21,8 @@ int main(int argc, char* argv[])
         PmergeMe<std::vector<int> > pmm_vector(input);
         PmergeMe<std::deque<int> > pmm_deque(input);
 
-        pmm_vector.sort();
+        if (!pmm_vector.sort())
+            return (1);
         pmm_deque.sort();
 
         pmm_vector.printSortedResult();
@@ -29,6 +30,7 @@ int main(int argc, char* argv[])
         pmm_deque.printTaskInfo();
     } catch (std::exception &e)
     {
+        std::cerr << e.what() << std::endl;
         return (1);
     }
 

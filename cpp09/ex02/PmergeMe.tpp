@@ -106,15 +106,32 @@ void PmergeMe<Container, true>::_printElements(const Container &container) const
 }
 
 template <typename Container>
-void PmergeMe<Container, true>::sort(void)
+bool PmergeMe<Container, true>::sort(void)
 {
     if (this->_inputNumbers.empty())
-    {
-        std::cerr << "Can not sort with empty or invalid input.\n";
-        return ;
-    }
+        throw std::runtime_error("Can not sort with empty or invalid input.");
+    else if (this->_inputNumbers.size() == 1)
+        throw std::runtime_error("Only one element in the container, no need to sort.");
+
     this->_fjs.setNumbers(this->_inputNumbers);
+    if (this->_isSorted(this->_inputNumbers))
+    {
+        std::cout << "Container is already sorted" << std::endl;
+        std::cout << this->_getFormattedNumbers(this->_inputNumbers);
+        return (false);
+    }
     this->_fjs.sort();
+    if (!this->_isSorted(this->_fjs.getSortedNumbers()))
+    {
+        std::cerr << "Failed to sort the container" << std::endl;
+        Container sorted_numbers = this->_fjs.getSortedNumbers();
+
+        for (typename Container::const_iterator it = sorted_numbers.begin(); it != sorted_numbers.end(); it++)
+            std::cout << *it << " ";
+        std::cout << std::endl;
+        return (false);
+    }
+    return (true);
 }
 
 template <typename Container>
@@ -144,7 +161,7 @@ std::string PmergeMe<Container, true>::_getFormattedTaskInfo(const FordJohnsonSo
     oss << std::right << "Time to process a range of " << std::setw(4) << fjs.getNumbers().size() << " elements ";
     oss << "with " << std::right << std::setw(16) << this->_getFormattedContainerType(Container()) << " : ";
     oss << std::right << std::setw(7) << this->_roundToDecimalPlaces(fjs.getTimeElapsed(), 5) << "us" << std::endl;
-    // oss << "Comparisons: " << fjs.getCompareCount() << std::endl;
+    oss << "Comparisons: " << fjs.getCompareCount() << std::endl;
     return (oss.str());
 }
 
@@ -182,14 +199,18 @@ std::string PmergeMe<Container, true>::_simplifyContainerType(const std::string 
     return (simplifiedType);
 }
 
+
+
 template <typename Container>
 std::string PmergeMe<Container, true>::_getFormattedNumbers(const Container &container) const
 {
     std::ostringstream oss;
     typename Container::const_iterator it = container.begin();
 
-    for (int i = 0; it != container.end() && i < 4; i++)
+    for (int i = 0; it != container.end(); i++)
     {
+        if ((container.size() > 5 && i >= 4))
+            break;
         oss << *it << " ";
         ++it;
     }
@@ -197,4 +218,22 @@ std::string PmergeMe<Container, true>::_getFormattedNumbers(const Container &con
         oss << "[...]";
     oss << std::endl;
     return (oss.str());
+}
+
+template <typename Container>
+bool PmergeMe<Container, true>::_isSorted(const Container &container) const
+{
+    typename Container::const_iterator it = container.begin();
+    typename Container::const_iterator itNext = container.begin();
+
+    if (it == container.end())
+        return (true);
+    while (itNext != container.end())
+    {
+        if (*it > *itNext)
+            return (false);
+        it = itNext;
+        ++itNext;
+    }
+    return (true);
 }

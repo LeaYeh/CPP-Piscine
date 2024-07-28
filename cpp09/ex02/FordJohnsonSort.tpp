@@ -101,10 +101,7 @@ typename FordJohnsonSort<Container>::ContainerPairContainer FordJohnsonSort<Cont
     this->_level++;
     lowerLevelRemainderPairs = this->_recursiveSort(pairs);
     this->_level--;
-    if (this->_level == 0)
-        this->_insertion(pairs, currentLevelRemainderPairs);
-    else
-        this->_insertion(pairs, lowerLevelRemainderPairs);
+    this->_insertion(pairs, currentLevelRemainderPairs);
     return (currentLevelRemainderPairs);
 }
 
@@ -174,47 +171,37 @@ void FordJohnsonSort<Container>::_setupPairElement(
 template <typename Container>
 void FordJohnsonSort<Container>::_insertion(ContainerPairContainer &unsortedPairs, ContainerPairContainer &remainderPairs)
 {
-    const int lowerLevelElementSize = std::pow(2, this->_level - 1);
+    const unsigned long lowerLevelElementSize = this->_level == 0 ? 0 : std::pow(2, this->_level - 1);
     JacobsthalGenerator jacobSeq;
     unsigned long jb;
     unsigned long jb_prev = 0;
 
-    this->_mergePairs(unsortedPairs, remainderPairs);
     this->_reshapePairs(unsortedPairs, lowerLevelElementSize);
+    this->_mergePairs(unsortedPairs, remainderPairs);
 
     ContainerPairContainer mainChain;
     ContainerPairContainer subChain;
     this->_splitToChain(unsortedPairs, mainChain, subChain);
-    mainChain.insert(mainChain.begin(), subChain[0]);
-    for (unsigned long i = 1; i < subChain.size();)
+
+    for (unsigned long i = 0; i < subChain.size();)
     {
-        jb = jacobSeq.next();
-        for (unsigned long k = std::min(jb, subChain.size() - 1); k > jb_prev; k--)
+        if (i == 0)
+            this->_binarySort(mainChain, subChain[i++]);
+        else
         {
-            this->_binarySort(mainChain, subChain[k]);
-            i++;
+            jb = jacobSeq.next();
+            for (unsigned long k = std::min(jb, subChain.size() - 1); k > jb_prev; k--)
+            {
+                this->_binarySort(mainChain, subChain[k]);
+                i++;
+            }
+            jb_prev = jb;
         }
-        jb_prev = jb;
     }
     if (this->_level == 0)
         this->_sortedNumbers = this->_convertToNumbers(mainChain);
     else
         unsortedPairs = mainChain;
-    // sortedPairs.insert(sortedPairs.end(), unsortedPairs.begin(), unsortedPairs.begin() + 2);
-    // for (unsigned long i = 2; i < unsortedPairs.size();)
-    // {
-    //     jb = jacobSeq.next();
-    //     for (unsigned long k = std::min(jb, unsortedPairs.size() - 1); k > jb_prev; k--)
-    //     {
-    //         this->_binarySort(sortedPairs, unsortedPairs[k]);
-    //         i++;
-    //     }
-    //     jb_prev = jb;
-    // }
-    // if (this->_level == 0)
-    //     this->_numbers = this->_convertToNumbers(sortedPairs);
-    // else
-    //     unsortedPairs = sortedPairs;
 }
 
 template <typename Container>
@@ -225,7 +212,10 @@ void FordJohnsonSort<Container>::_splitToChain(
 {
     if (pairs.size() == 0)
         throw std::runtime_error("Pairs is empty and can not be split");
-    for (unsigned long i = 0; i < pairs.size(); i++)
+    unsigned long i = 0;
+    for (; i < 2 && i < pairs.size(); i++)
+        mainChain.push_back(pairs[i]);
+    for (; i < pairs.size(); i++)
     {
         if (i % 2 == 1)
             mainChain.push_back(pairs[i]);
