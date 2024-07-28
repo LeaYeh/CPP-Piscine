@@ -17,8 +17,16 @@ bool isValidDate(const std::string &dateString)
         return (false);
     if (!isValidMonth(dateString.substr(5, 2)))
         return (false);
-    if (!isValidDay(dateString.substr(5, 2),
-            dateString.substr(8, 2)))
+
+    int year;
+    int month;
+
+    std::istringstream iss(dateString.substr(0, 4));
+    iss >> year;
+    iss.clear();
+    iss.str(dateString.substr(5, 2));
+    iss >> month;
+    if (!isValidDay(year, month, dateString.substr(8, 2)))
         return (false);
     return (true);
 }
@@ -60,8 +68,7 @@ bool isValidMonth(const std::string &monthString)
     return (true);
 }
 
-#include <iostream>
-bool isValidDay(const std::string &monthString, const std::string &dayString)
+bool isValidDay(const int year, const int month, const std::string &dayString)
 {
     if (dayString.length() != 2)
         return (false);
@@ -74,13 +81,9 @@ bool isValidDay(const std::string &monthString, const std::string &dayString)
     int day;
 
     iss >> day;
-    int month;
-    iss.clear();
-    iss.str(monthString);
-    iss >> month;
     if (day < 1 || day > DaysLookupTable[month])
     {
-        if (month == 2 && day == 29 && _isLeapYear(_getCurrentYear()))
+        if (month == 2 && day == 29 && _isLeapYear(year))
             return (true);
         return (false);
     }
