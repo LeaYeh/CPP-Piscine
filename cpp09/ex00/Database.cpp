@@ -46,14 +46,14 @@ double Database::getExchangeRate(const std::string &dateString) const
     return (exchange);
 }
 
-std::string &Database::getFilePath(void) const
+const std::string &Database::getFilePath(void) const
 {
-    return (const_cast<std::string &>(this->_filePath));
+    return (this->_filePath);
 }
 
-std::map<std::string, double> &Database::getRecords(void) const
+const  std::map<std::string, double> &Database::getRecords(void) const
 {
-    return (const_cast<std::map<std::string, double> &>(this->_records));
+    return (this->_records);
 }
 
 bool Database::_parseInputFile(const std::string &filePath)

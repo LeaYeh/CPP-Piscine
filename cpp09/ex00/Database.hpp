@@ -19,8 +19,8 @@ public:
 
     void update(const std::string &filePath);
     double getExchangeRate(const std::string &dateString) const;
-    std::string &getFilePath(void) const;
-    std::map<std::string, double> &getRecords(void) const;
+    const std::string &getFilePath(void) const;
+    const std::map<std::string, double> &getRecords(void) const;
 
 protected:
 private:
